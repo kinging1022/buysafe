@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — post an item (mobile)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}
+.photo{background:repeating-linear-gradient(135deg, rgba(18,20,16,.035) 0 10px, rgba(18,20,16,0) 10px 20px)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+input,textarea{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;color:#121410;outline:none}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 390px; min-height: 2140px; margin: 0 auto; display: flex; flex-direction: column; background: #F3EDE0; overflow: hidden; position: relative">
+
+<header style="background: #0D3B2A; color: #F3EDE0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 16px">
+<a href="/profile" style="color: #F3EDE0; text-decoration: none; font-size: 15px; font-weight: 600; min-height: 44px; display: flex; align-items: center">←  Back</a>
+<h1 style="margin: 0; font-size: 40px; line-height: 1; font-weight: 800; letter-spacing: -0.04em">Post an item. <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #F5B82E">Get paid the safe way.</span></h1>
+</header>
+
+<form style="flex-grow: 1; padding: 0 20px 150px; display: flex; flex-direction: column">
+
+<section style="display: flex; flex-direction: column; gap: 12px; padding: 24px 0; border-bottom: 1px solid rgba(18,20,16,.18)">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 19px; font-weight: 700"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A86A0C; margin-right: 8px">01</span>Photos</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5B5E55">3 OF 8</span></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 104px 104px; gap: 8px">
+<div class="photo" style="grid-column: span 2; grid-row: span 2; background-color: #E4DBC6; border-radius: 12px; position: relative"><span style="position: absolute; left: 8px; top: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; padding: 5px 8px; border-radius: 999px; background: #F5B82E">COVER</span></div>
+<div class="photo" style="background-color: #DCD3BF; border-radius: 12px"></div>
+<button type="button" aria-label="Add photos" style="border: 2px dashed rgba(18,20,16,.35); border-radius: 12px; background: #FFFFFF; font-size: 26px; color: #121410">+</button>
+</div>
+<span style="font-size: 13px; line-height: 1.5; color: #5B5E55">First photo is the cover. Hold and drag to reorder.</span>
+</section>
+
+<label style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0; border-bottom: 1px solid rgba(18,20,16,.18); font-size: 19px; font-weight: 700"><span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A86A0C; margin-right: 8px">02</span>Title</span>
+<input type="text" value="Samsung fridge, 2 doors" style="height: 54px; box-sizing: border-box; padding: 0 14px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; font-weight: 400">
+<span style="align-self: flex-end; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: #5B5E55">23 / 120</span>
+</label>
+
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-bottom: 1px solid rgba(18,20,16,.18)">
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 19px; font-weight: 700"><span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A86A0C; margin-right: 8px">03</span>Category</span>
+<span style="height: 54px; box-sizing: border-box; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-size: 17px; font-weight: 400">Home appliances<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#121410" stroke-width="1.8" aria-hidden="true"><path d="M3 5l4 4 4-4"></path></svg></span></label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 19px; font-weight: 700"><span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A86A0C; margin-right: 8px">04</span>Condition</span>
+<span style="height: 54px; box-sizing: border-box; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-size: 17px; font-weight: 400">Good<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#121410" stroke-width="1.8" aria-hidden="true"><path d="M3 5l4 4 4-4"></path></svg></span>
+<span style="font-size: 13px; font-weight: 400; color: #5B5E55">Works well. Normal signs of use.</span></label>
+</div>
+
+<label style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0; border-bottom: 1px solid rgba(18,20,16,.18); font-size: 19px; font-weight: 700"><span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A86A0C; margin-right: 8px">05</span>Description</span>
+<textarea rows="5" style="box-sizing: border-box; padding: 12px 14px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; line-height: 1.55; font-weight: 400; resize: vertical">Bought in 2022, still cooling well. Small dent on the left door (see photo 3). You can test it at my place before you confirm.</textarea>
+<span style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 400; color: #5B5E55"><span>Be honest about faults.</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px">124 / 1,000</span></span>
+</label>
+
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 24px 0; border-bottom: 1px solid rgba(18,20,16,.18)">
+<label for="price-m" style="font-size: 19px; font-weight: 700"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A86A0C; margin-right: 8px">06</span>Price</label>
+<div style="display: flex; height: 60px; background: #FFFFFF; border: 2px solid #121410; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 4px rgba(245,184,46,.45)">
+<span style="display: flex; align-items: center; padding: 0 16px; font-size: 22px; font-weight: 800; background: #EFE9DC; border-right: 1.5px solid rgba(18,20,16,.14)">₦</span>
+<input id="price-m" type="text" inputmode="numeric" value="8,000" class="num" style="flex-grow: 1; min-width: 0; border: 0; padding: 0 16px; background: transparent; font-size: 24px; font-weight: 800">
+</div>
+<div aria-live="polite" style="display: flex; gap: 8px; align-items: baseline; font-size: 15px; color: #3E4139"><span style="width: 9px; height: 9px; border-radius: 50%; background: #1E6B45; flex-shrink: 0"></span><span>You’ll receive <strong class="num" style="color: #1E6B45; font-weight: 800">₦6,500</strong> after the ₦1,500 fee (flat).</span></div>
+
+<div style="display: flex; gap: 10px; padding: 12px; background: #E6DDC9; border-radius: 12px; font-size: 13px; line-height: 1.5; color: #3E4139"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; color: #A86A0C; padding-top: 2px">TIP</span><span>Under ₦10,000 the fee is a flat ₦1,500. That’s 19% of this price.</span></div>
+
+<details style="margin-top: 4px">
+<summary style="list-style: none; cursor: pointer; min-height: 44px; display: flex; align-items: center; font-size: 14px; font-weight: 700; color: #0D3B2A">How the fee works ▾</summary>
+<div class="num" style="display: flex; flex-direction: column; font-size: 14px">
+<div style="display: flex; justify-content: space-between; padding: 10px 8px; border-radius: 8px; background: rgba(245,184,46,.25); font-weight: 700"><span>Under ₦10,000</span><span>Flat ₦1,500</span></div><div style="display: flex; justify-content: space-between; padding: 10px 8px; border-radius: 8px; background: transparent; font-weight: 400"><span>₦10,000 – ₦19,999</span><span>15%</span></div><div style="display: flex; justify-content: space-between; padding: 10px 8px; border-radius: 8px; background: transparent; font-weight: 400"><span>₦20,000 and above</span><span>10%</span></div>
+</div>
+</details>
+
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 24px 0">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 19px; font-weight: 700"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A86A0C; margin-right: 8px">07–08</span>Location</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .1em; color: #1E6B45">FROM PROFILE</span></div>
+<span style="height: 54px; box-sizing: border-box; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-size: 17px">Lagos<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#121410" stroke-width="1.8" aria-hidden="true"><path d="M3 5l4 4 4-4"></path></svg></span>
+<input type="text" value="Surulere" aria-label="Area or town" style="height: 54px; box-sizing: border-box; padding: 0 14px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px">
+<span style="font-size: 13px; color: #5B5E55">Buyers see the area, never your street address.</span>
+</div>
+</form>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; background: #0D3B2A; color: #F3EDE0; padding: 14px 20px 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 -12px 30px rgba(18,20,16,.18)">
+<div class="num" style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #A9BBA9">YOU RECEIVE</span><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.03em; color: #B6E36B">₦6,500</span></div>
+<a href="/profile" style="height: 54px; display: flex; align-items: center; justify-content: center; text-decoration: none; background: #F5B82E; color: #121410; border-radius: 12px; font-size: 17px; font-weight: 700">Submit for review  →</a>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,239 @@
+/* Shared form styles for the auth screens (sign up, verify, log in).
+   Values come from design/auth-*.reference.html. Tokens and fonts are the
+   landing page's (landing-tokens.css). Desktop layout starts at 900px. */
+
+.auth a {
+  color: var(--forest);
+}
+
+.auth a:hover {
+  color: var(--released);
+  opacity: 1;
+}
+
+.af-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.af-h2 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+/* ---------- Fields ---------- */
+
+.af-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.af-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.af-helper {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.af-error {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--loss);
+}
+
+.af-error:empty {
+  display: none;
+}
+
+/* Plain text input */
+.af-input {
+  height: 54px;
+  box-sizing: border-box;
+  padding: 0 16px;
+  background: #ffffff;
+  border: 1.5px solid rgba(18, 20, 16, 0.22);
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink);
+  outline: none;
+}
+
+/* Combo boxes (+234 prefix, password + SHOW). Content-box like the reference. */
+.af-combo {
+  display: flex;
+  align-items: center;
+  height: 54px;
+  background: #ffffff;
+  border: 1.5px solid rgba(18, 20, 16, 0.22);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.af-combo input {
+  flex-grow: 1;
+  align-self: stretch;
+  min-width: 0;
+  border: 0;
+  padding: 0 16px;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink);
+  outline: none;
+}
+
+.af-input::placeholder,
+.af-combo input::placeholder {
+  color: #8c8e85;
+  opacity: 1;
+}
+
+.af-input.is-error,
+.af-combo.is-error {
+  border: 1.5px solid var(--loss);
+}
+
+/* Focus (wins over error while typing) */
+.af-input:focus,
+.af-combo:focus-within {
+  border: 2px solid var(--ink);
+  box-shadow: 0 0 0 4px rgba(245, 184, 46, 0.45);
+}
+
+/* The ring above replaces the global outline inside these controls. */
+.af-input:focus-visible,
+.af-combo input:focus-visible {
+  outline: none;
+}
+
+/* ---------- Buttons ---------- */
+
+.af-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 58px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--forest);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.af-btn:disabled {
+  cursor: progress;
+}
+
+.af-btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  background: transparent;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth .af-btn-secondary,
+.auth .af-btn-secondary:hover {
+  color: var(--ink);
+}
+
+/* Text-style button (Resend code) */
+.af-link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--forest);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.af-link-btn:disabled {
+  color: #8c8e85;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: default;
+}
+
+/* Paper-deep boxes: server errors (ERROR) and the verify NOTE. */
+.af-box {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  background: var(--paper-deep);
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.af-box__label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding-top: 2px;
+}
+
+.af-box__label--error {
+  color: var(--loss);
+}
+
+.af-box__label--note {
+  color: var(--amber-ink);
+}
+
+/* ---------- Visibility by layout (desktop ≥900px) ---------- */
+
+@media (min-width: 900px) {
+  .auth-m {
+    display: none !important;
+  }
+}
+
+@media (max-width: 899px) {
+  .auth-d {
+    display: none !important;
+  }
+
+  .af-box {
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .af-box__label {
+    font-size: 11px;
+    padding-top: 3px;
+  }
+}

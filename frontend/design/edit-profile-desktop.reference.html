@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — edit profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}a:hover{color:#1E6B45}
+.guilloche{background:repeating-radial-gradient(circle at 50% 50%, rgba(243,237,224,0) 0 9px, rgba(243,237,224,.10) 9px 10px)}
+input,textarea,select{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;color:#121410;outline:none}
+input::placeholder,textarea::placeholder{color:#8C8E85}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 1440px; min-height: 1480px; margin: 0 auto; display: flex; flex-direction: column; background: #F3EDE0; overflow: hidden">
+
+<header style="background: #0D3B2A; color: #F3EDE0; padding: 0 96px; height: 76px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(243,237,224,.12)">
+<div style="display: flex; align-items: center; gap: 48px">
+<a href="/" style="text-decoration: none; color: #F3EDE0; font-size: 28px; font-weight: 800; letter-spacing: -0.04em">buysafe<span style="color: #F5B82E">.</span></a>
+<nav style="display: flex; gap: 32px; font-size: 16px; font-weight: 500"><a href="#" style="text-decoration: none; color: #F3EDE0">Browse</a><a href="#" style="text-decoration: none; color: #F3EDE0">Messages</a><a href="#" style="text-decoration: none; color: #F3EDE0">Wallet</a></nav>
+</div>
+<div style="display: flex; align-items: center; gap: 20px">
+<a href="#" style="text-decoration: none; background: #F5B82E; color: #121410; font-size: 15px; font-weight: 700; padding: 12px 20px; border-radius: 10px">Sell something</a>
+<a href="/profile" aria-label="Your profile" style="width: 44px; height: 44px; border-radius: 50%; background: #F5B82E; color: #121410; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 800; font-size: 16px; box-shadow: 0 0 0 2px #0D3B2A, 0 0 0 4px rgba(243,237,224,.5)">TA</a>
+</div>
+</header>
+
+<div style="padding: 56px 96px 0; display: flex; flex-direction: column; gap: 18px">
+<a href="/profile" style="font-size: 15px; font-weight: 600; text-decoration: none">←  Back to profile</a>
+<h1 style="margin: 0; font-size: 72px; line-height: 1; font-weight: 800; letter-spacing: -0.045em">Edit profile</h1>
+</div>
+
+<div style="flex-grow: 1; padding: 48px 96px 96px; display: grid; grid-template-columns: 400px 1fr; gap: 80px; align-items: start">
+
+<aside style="background: #0D3B2A; color: #F3EDE0; border-radius: 20px; padding: 40px 36px; display: flex; flex-direction: column; align-items: center; gap: 28px; position: relative; overflow: hidden">
+<div class="guilloche" style="position: absolute; width: 520px; height: 520px; border-radius: 50%; left: 50%; margin-left: -260px; top: -150px"></div>
+<div style="position: relative; width: 176px; height: 176px; border-radius: 50%; background: #F5B82E; color: #121410; display: flex; align-items: center; justify-content: center; font-size: 72px; font-weight: 800; letter-spacing: -0.04em; box-shadow: 0 0 0 6px #0D3B2A, 0 0 0 7.5px rgba(243,237,224,.45)">TA</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 14px; align-items: center; width: 100%">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #A9BBA9">AVATAR COLOUR</span>
+<div role="radiogroup" aria-label="Avatar colour" style="display: flex; gap: 12px">
+
+<button type="button" role="radio" aria-checked="true" aria-label="Marigold" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #F5B82E; box-shadow: 0 0 0 3px #0D3B2A, 0 0 0 5.5px #F3EDE0"></button>
+
+<button type="button" role="radio" aria-checked="false" aria-label="Lime" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #B6E36B; box-shadow: inset 0 0 0 1px rgba(18,20,16,.15)"></button>
+
+<button type="button" role="radio" aria-checked="false" aria-label="Sky" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #7FD1FF; box-shadow: inset 0 0 0 1px rgba(18,20,16,.15)"></button>
+
+<button type="button" role="radio" aria-checked="false" aria-label="Coral" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #FF8A65; box-shadow: inset 0 0 0 1px rgba(18,20,16,.15)"></button>
+
+<button type="button" role="radio" aria-checked="false" aria-label="Paper" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #F3EDE0; box-shadow: inset 0 0 0 1px rgba(18,20,16,.15)"></button>
+
+</div>
+<p style="margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: #C9D3C4; text-align: center">Your initials come from your name. Photo uploads are coming soon.</p>
+</div>
+</aside>
+
+<form style="display: flex; flex-direction: column; gap: 0; max-width: 720px">
+
+<div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 32px 0; border-top: 2px solid #121410">
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 20px; font-weight: 700">Your name</span><span style="font-size: 14px; line-height: 1.5; color: #5B5E55">Use the name on your bank account so payouts go through.</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">First name
+<input type="text" value="Tolu" style="height: 54px; box-sizing: border-box; padding: 0 16px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px">
+</label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Last name
+<input type="text" value="Adeyemi" style="height: 54px; box-sizing: border-box; padding: 0 16px; background: #FFFFFF; border: 2px solid #121410; border-radius: 12px; box-shadow: 0 0 0 4px rgba(245,184,46,.45)">
+</label>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 32px 0; border-top: 1px solid rgba(18,20,16,.18)">
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 20px; font-weight: 700">Where you are</span><span style="font-size: 14px; line-height: 1.5; color: #5B5E55">Shown on your listings so buyers know how far to travel.</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">State
+<div style="position: relative; height: 54px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 17px; font-weight: 400">
+<span>Lagos</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#121410" stroke-width="1.8" aria-hidden="true"><path d="M3 5l4 4 4-4"></path></svg>
+</div>
+</label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Area or town
+<input type="text" value="Surulere" style="height: 54px; box-sizing: border-box; padding: 0 16px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px">
+</label>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 32px 0; border-top: 1px solid rgba(18,20,16,.18)">
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 20px; font-weight: 700">About you</span><span style="font-size: 14px; line-height: 1.5; color: #5B5E55">Optional. One line buyers see on your profile.</span></div>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Short bio
+<textarea rows="3" style="box-sizing: border-box; padding: 14px 16px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; resize: vertical; line-height: 1.5">Moving abroad in December, clearing out the flat. Everything works, come and test it.</textarea>
+<span style="align-self: flex-end; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: #5B5E55">84 / 160</span>
+</label>
+</div>
+
+<div style="display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 32px 0; border-top: 1px solid rgba(18,20,16,.18); border-bottom: 1px solid rgba(18,20,16,.18)">
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 20px; font-weight: 700">Phone number</span><span style="font-size: 14px; line-height: 1.5; color: #5B5E55">Used to log in. Changing it needs a new code.</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 54px; padding: 0 6px 0 16px; background: #EFE9DC; border-radius: 12px">
+<div style="display: flex; align-items: center; gap: 14px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600">+234 803 ••• 4567</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: #1E6B45">✓ VERIFIED</span></div>
+<a href="/profile/phone" style="height: 42px; display: flex; align-items: center; padding: 0 16px; text-decoration: none; font-size: 14px; font-weight: 700; color: #121410; background: #FFFFFF; border-radius: 9px">Change number</a>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 20px; padding-top: 36px">
+<a href="/profile" style="height: 58px; padding: 0 36px; display: flex; align-items: center; justify-content: center; text-decoration: none; background: #0D3B2A; color: #F3EDE0; border-radius: 12px; font-size: 18px; font-weight: 700">Save changes</a>
+<a href="/profile" style="font-size: 16px; font-weight: 600; color: #3E4139">Cancel</a>
+<span style="margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A86A0C">● UNSAVED CHANGES</span>
+</div>
+</form>
+</div>
+
+</div>
+</body>
+</html>

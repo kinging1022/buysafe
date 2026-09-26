@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — create account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}a:hover{color:#1E6B45}
+.guilloche{background:repeating-radial-gradient(circle at 50% 50%, rgba(243,237,224,0) 0 9px, rgba(243,237,224,.10) 9px 10px)}
+.perf{position:relative}
+.perf::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:20px;background:radial-gradient(circle at 10px 0, transparent 9px, #F3EDE0 10px) 0 0/20px 20px repeat-x}
+.dash{border-top:1.5px dashed rgba(18,20,16,.28)}
+input{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;color:#121410;outline:none}
+input::placeholder{color:#8C8E85}
+</style>
+<div style="max-width: 1440px; min-height: 900px; margin: 0 auto; display: grid; grid-template-columns: 600px 1fr; background: #F3EDE0; overflow: hidden">
+
+<aside style="background: #0D3B2A; color: #F3EDE0; padding: 48px 64px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden">
+<div class="guilloche" style="position: absolute; width: 760px; height: 760px; border-radius: 50%; left: -180px; bottom: -300px"></div>
+<a href="/" style="position: relative; text-decoration: none; color: #F3EDE0; font-size: 30px; font-weight: 800; letter-spacing: -0.04em">buysafe<span style="color: #F5B82E">.</span></a>
+<div style="position: relative; display: flex; flex-direction: column; gap: 40px">
+<h1 style="margin: 0; font-size: 64px; line-height: .98; font-weight: 800; letter-spacing: -0.045em">Two minutes to set up. Then <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: #F5B82E">nobody goes first.</span></h1>
+<div class="perf" style="width: 400px; background: #F3EDE0; color: #121410; padding: 24px 26px 30px; transform: rotate(-2deg); box-shadow: 0 24px 50px rgba(0,0,0,.28); display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #5B5E55"><span>NEW ACCOUNT</span><span>STEP 1 OF 2</span></div>
+<div class="dash"></div>
+<div style="display: flex; align-items: center; gap: 12px; font-size: 16px"><span style="width: 14px; height: 14px; border-radius: 50%; background: #F5B82E; box-shadow: 0 0 0 5px rgba(245,184,46,.3)"></span><span style="flex-grow: 1; font-weight: 700">Your details</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #A86A0C">NOW</span></div>
+<div style="display: flex; align-items: center; gap: 12px; font-size: 16px; color: #5B5E55"><span style="width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid #8C8E85"></span><span style="flex-grow: 1">Verify your phone</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px">NEXT</span></div>
+</div>
+</div>
+<div style="position: relative; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .04em; color: #A9BBA9">✓ Phone-verified users only · Payments by [PAYMENT PARTNER]</div>
+</aside>
+
+<main style="display: flex; flex-direction: column; padding: 40px 64px">
+<div style="display: flex; justify-content: flex-end; gap: 8px; font-size: 15px; color: #3E4139"><span>Already have an account?</span><a href="/login" style="font-weight: 700">Log in</a></div>
+<div style="flex-grow: 1; display: flex; align-items: center; justify-content: center">
+<form style="width: 480px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: .14em; color: #5B5E55">CREATE ACCOUNT</div>
+<h2 style="margin: 0; font-size: 44px; line-height: 1; font-weight: 800; letter-spacing: -0.04em">Let’s get you in.</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">First name
+<input type="text" value="Chiamaka" style="height: 54px; box-sizing: border-box; padding: 0 16px; background: #FFFFFF; border: 2px solid #121410; border-radius: 12px; box-shadow: 0 0 0 4px rgba(245,184,46,.45)">
+</label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Last name
+<input type="text" placeholder="As on your bank account" style="height: 54px; box-sizing: border-box; padding: 0 16px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px">
+</label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Phone number
+<div style="display: flex; height: 54px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; overflow: hidden">
+<span style="display: flex; align-items: center; padding: 0 16px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500; background: #EFE9DC; border-right: 1.5px solid rgba(18,20,16,.14)">+234</span>
+<input type="tel" placeholder="803 123 4567" style="flex-grow: 1; border: 0; padding: 0 16px; background: transparent; font-variant-numeric: tabular-nums">
+</div>
+<span style="font-size: 13px; font-weight: 400; color: #5B5E55">We’ll text a 6-digit code to confirm it’s yours.</span>
+</label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Password
+<div style="display: flex; height: 54px; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 12px; overflow: hidden; align-items: center">
+<input type="password" value="safe2buy1" style="flex-grow: 1; border: 0; padding: 0 16px; background: transparent; letter-spacing: .1em">
+<button type="button" style="height: 100%; padding: 0 16px; border: 0; background: transparent; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: .1em; color: #3E4139; cursor: pointer">SHOW</button>
+</div>
+<div style="display: flex; gap: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500">
+<span style="color: #1E6B45">✓ 8+ characters</span><span style="color: #1E6B45">✓ A number</span><span style="color: #8C8E85">○ A capital letter</span>
+</div>
+</label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Confirm password
+<div style="display: flex; height: 54px; background: #FFFFFF; border: 1.5px solid #A3361F; border-radius: 12px; overflow: hidden; align-items: center">
+<input type="password" value="safe2buy" style="flex-grow: 1; border: 0; padding: 0 16px; background: transparent; letter-spacing: .1em">
+<button type="button" style="height: 100%; padding: 0 16px; border: 0; background: transparent; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: .1em; color: #3E4139; cursor: pointer">SHOW</button>
+</div>
+<span style="font-size: 13px; font-weight: 500; color: #A3361F">Passwords don’t match yet.</span>
+</label>
+<a href="/verify" style="margin-top: 6px; height: 58px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; background: #0D3B2A; color: #F3EDE0; border-radius: 12px; font-size: 18px; font-weight: 700">Continue  →</a>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5B5E55">By continuing you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+</form>
+</div>
+</main>
+
+</div>
+</body>
+</html>

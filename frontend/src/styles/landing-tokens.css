@@ -1,0 +1,244 @@
+/* Global styles for the landing page, copied from
+   design/landing-desktop.reference.html. The reference has no box-sizing
+   reset and uses default line-heights, so neither is added here. */
+
+/* Fonts: Bricolage Grotesque (opsz 12–96, wght 200–800), Instrument Serif
+   (regular + italic), IBM Plex Mono 400/500/600. */
+@import '@fontsource-variable/bricolage-grotesque/opsz.css';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+
+/* Instrument Serif has no ₦ (U+20A6). These single-glyph fonts draw ₦ from
+   Instrument Serif's own N plus two bars, so "₦45,000, gone." matches. */
+@font-face {
+  font-family: 'Instrument Serif Naira';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/instrument-serif-naira-normal.woff2') format('woff2');
+  unicode-range: U+20A6;
+}
+@font-face {
+  font-family: 'Instrument Serif Naira';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/instrument-serif-naira-italic.woff2') format('woff2');
+  unicode-range: U+20A6;
+}
+
+:root {
+  --forest: #0d3b2a; /* brand background: nav, hero, how-it-works, final CTA */
+  --accent: #f5b82e; /* marigold = "money held"; strip, vendor section, buttons */
+  --paper: #f3ede0; /* page background, receipt paper, light text on green */
+  --paper-deep: #e6ddc9; /* "Meet like you mean it" + founder note backgrounds */
+  --ink: #121410; /* main text */
+  --ink-2: #3e4139; /* body text on paper */
+  --muted: #5b5e55; /* eyebrows, secondary text on paper */
+  --on-forest: #d3dbcf; /* hero sub-copy */
+  --on-forest-2: #c9d3c4; /* step body text */
+  --on-forest-muted: #a9bba9; /* mono labels on green */
+  --amber-ink: #a86a0c; /* HELD SAFE stamp, rule labels, fee minus */
+  --released: #1e6b45; /* "released"/success green on paper */
+  --lime: #b6e36b; /* release button / payout on dark */
+  --loss: #a3361f; /* only the "₦45,000, gone." note */
+  /* fontsource registers the variable font as "Bricolage Grotesque Variable" */
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+  --font-serif: 'Instrument Serif Naira', 'Instrument Serif', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Layout: 96px sides at ≥1280, 48px at 768–1279, 20px below. */
+  --pad-x: 96px;
+  --nav-h: 88px;
+}
+
+@media (max-width: 1279px) {
+  :root {
+    --pad-x: 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --pad-x: 20px;
+    --nav-h: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+[id] {
+  scroll-margin-top: var(--nav-h);
+}
+
+/* Focus: ink ring on light, marigold ring on dark sections. */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--accent);
+}
+
+/* ---------- Reference utilities ---------- */
+
+.guilloche {
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    rgba(243, 237, 224, 0) 0 9px,
+    rgba(243, 237, 224, 0.1) 9px 10px
+  );
+}
+
+.guilloche2 {
+  background: repeating-radial-gradient(
+    circle at 30% 60%,
+    rgba(243, 237, 224, 0) 0 13px,
+    rgba(245, 184, 46, 0.1) 13px 14px
+  );
+}
+
+.perf {
+  position: relative;
+}
+
+.perf::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 20px;
+  background: radial-gradient(circle at 10px 0, transparent 9px, #f3ede0 10px) 0 0/20px 20px
+    repeat-x;
+}
+
+.dash {
+  border-top: 1.5px dashed rgba(18, 20, 16, 0.28);
+}
+
+details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+.num {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Serif-italic accent used inside headlines ("hold", "in the middle." …). */
+.serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Mono eyebrow label above section headings. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+/* Section wrapper: backgrounds go full-bleed on the section itself; content
+   sits in a 1440px column like the reference's page wrapper. */
+.l-wrap {
+  box-sizing: border-box;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+
+.naira {
+  font-family: var(--font-serif);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Copy that differs between the desktop and mobile references. */
+@media (min-width: 768px) {
+  .m-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .d-only {
+    display: none !important;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .guilloche {
+    background: repeating-radial-gradient(
+      circle at 50% 50%,
+      rgba(243, 237, 224, 0) 0 8px,
+      rgba(243, 237, 224, 0.1) 8px 9px
+    );
+  }
+
+  .perf::after {
+    bottom: -8px;
+    height: 16px;
+    background: radial-gradient(circle at 8px 0, transparent 7px, #f3ede0 8px) 0 0/16px 16px
+      repeat-x;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 12px 16px;
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 10px;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}

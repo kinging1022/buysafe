@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d3b2a">
+    <!-- head:meta (title, description and Open Graph tags from src/config/landing.js; see vite.config.js) -->
+    <script>
+      // The prerendered landing markup lives in #app. On any other route,
+      // hide it until the client app mounts (Vue adds data-v-app on mount).
+      if (location.pathname !== '/') document.documentElement.setAttribute('data-spa', '')
+    </script>
+    <style>[data-spa] #app:not([data-v-app]) { display: none; }</style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — reset password (mobile)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}a:hover{color:#1E6B45}
+.guilloche{background:repeating-radial-gradient(circle at 50% 50%, rgba(243,237,224,0) 0 8px, rgba(243,237,224,.10) 8px 9px)}
+input{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;color:#121410;outline:none}
+input::placeholder{color:#8C8E85}
+.otp{font-family:'IBM Plex Mono',monospace}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 390px; min-height: 844px; margin: 0 auto; display: flex; flex-direction: column; background: #F3EDE0; overflow: hidden">
+
+<header style="background: #0D3B2A; color: #F3EDE0; padding: 16px 20px 32px; display: flex; flex-direction: column; gap: 24px; position: relative; overflow: hidden">
+<div class="guilloche" style="position: absolute; width: 420px; height: 420px; border-radius: 50%; right: -200px; top: -160px"></div>
+<div style="position: relative; display: flex; justify-content: space-between; align-items: center">
+<button type="button" style="background: transparent; border: 0; padding: 0; color: #F3EDE0; font-size: 15px; font-weight: 600; min-height: 44px">←  Back</button>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #F5B82E">STEP 2 OF 3</span>
+</div>
+<h1 style="position: relative; margin: 0; font-size: 40px; line-height: 1; font-weight: 800; letter-spacing: -0.04em">Forgot it? Your money <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #F5B82E">didn’t go anywhere.</span></h1>
+<div style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<span style="height: 4px; border-radius: 2px; background: #B6E36B"></span><span style="height: 4px; border-radius: 2px; background: #F5B82E"></span><span style="height: 4px; border-radius: 2px; background: rgba(243,237,224,.25)"></span>
+</div>
+</header>
+
+<div style="flex-grow: 1; padding: 32px 20px 32px; display: flex; flex-direction: column">
+
+
+
+
+<div style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 style="margin: 0; font-size: 28px; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em">Enter the 6-digit code.</h2><p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3E4139">Sent to <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: #121410">+234 803 ••• 4567</span></p></div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+<input class="otp" aria-label="Digit 1" inputmode="numeric" maxlength="1" value="7" style="height: 62px; width: 100%; box-sizing: border-box; text-align: center; font-size: 26px; font-weight: 600; background: #FFFFFF; border: 1.5px solid #121410; border-radius: 10px">
+<input class="otp" aria-label="Digit 2" inputmode="numeric" maxlength="1" value="1" style="height: 62px; width: 100%; box-sizing: border-box; text-align: center; font-size: 26px; font-weight: 600; background: #FFFFFF; border: 1.5px solid #121410; border-radius: 10px">
+<input class="otp" aria-label="Digit 3" inputmode="numeric" maxlength="1" value="" style="height: 62px; width: 100%; box-sizing: border-box; text-align: center; font-size: 26px; font-weight: 600; background: #FFFFFF; border: 2px solid #121410; border-radius: 10px; box-shadow: 0 0 0 4px rgba(245,184,46,.45)">
+<input class="otp" aria-label="Digit 4" inputmode="numeric" maxlength="1" value="" style="height: 62px; width: 100%; box-sizing: border-box; text-align: center; font-size: 26px; font-weight: 600; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 10px">
+<input class="otp" aria-label="Digit 5" inputmode="numeric" maxlength="1" value="" style="height: 62px; width: 100%; box-sizing: border-box; text-align: center; font-size: 26px; font-weight: 600; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 10px">
+<input class="otp" aria-label="Digit 6" inputmode="numeric" maxlength="1" value="" style="height: 62px; width: 100%; box-sizing: border-box; text-align: center; font-size: 26px; font-weight: 600; background: #FFFFFF; border: 1.5px solid rgba(18,20,16,.22); border-radius: 10px">
+</div>
+<div style="font-size: 14px; color: #5B5E55">Didn’t get it? Resend in <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: #121410">0:51</span></div>
+<button type="button" style="height: 58px; border: 0; background: #0D3B2A; color: #F3EDE0; border-radius: 12px; font-size: 18px; font-weight: 700">Verify code</button>
+</div>
+
+
+
+
+
+
+<p style="margin: auto 0 0; padding-top: 24px; font-size: 15px; color: #3E4139; text-align: center">Remembered it? <a href="/login" style="font-weight: 700">Log in</a></p>
+</div>
+
+</div>
+</body>
+</html>
