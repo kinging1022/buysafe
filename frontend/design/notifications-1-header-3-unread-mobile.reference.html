@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — notifications (mobile)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}
+.guilloche{background:repeating-radial-gradient(circle at 50% 50%, rgba(243,237,224,0) 0 8px, rgba(243,237,224,.10) 8px 9px)}
+.photo{background:repeating-linear-gradient(135deg, rgba(18,20,16,.035) 0 10px, rgba(18,20,16,0) 10px 20px)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.mono{font-family:'IBM Plex Mono',monospace}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 390px; min-height: 844px; margin: 0 auto; position: relative; overflow: hidden; background: #F3EDE0; display: flex; flex-direction: column">
+
+<header style="flex-shrink: 0; height: 64px; background: #0D3B2A; display: flex; align-items: center; justify-content: space-between; padding: 0 14px 0 9px; position: relative; z-index: 3">
+<div style="display: flex; align-items: center">
+<button type="button" aria-label="Open menu" style="width: 44px; height: 44px; border: 0; background: transparent; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; padding: 0"><span style="width: 18px; height: 2px; background: #F3EDE0; border-radius: 1px"></span><span style="width: 18px; height: 2px; background: #F3EDE0; border-radius: 1px"></span></button>
+<a href="/" style="margin-left: 1px; text-decoration: none; color: #F3EDE0; font-size: 22px; font-weight: 800; letter-spacing: -0.04em">buysafe<span style="color: #F5B82E">.</span></a>
+</div>
+<div style="display: flex; align-items: center">
+<button type="button" aria-label="Notifications, 3 unread" aria-expanded="false" style="width: 44px; height: 44px; border: 0; padding: 0; border-radius: 12px; background: transparent; position: relative; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F3EDE0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg><span class="mono num" aria-hidden="true" style="position: absolute; left: 25px; top: 6px; min-width: 18px; height: 18px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #F5B82E; color: #121410; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #0D3B2A">3</span></button>
+<a href="/profile" aria-label="Your profile" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none"><span style="width: 32px; height: 32px; border-radius: 50%; background: #F5B82E; color: #121410; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1.5px #0D3B2A, 0 0 0 3px rgba(243,237,224,.55)">TA</span></a>
+</div>
+</header>
+
+
+<div style="flex-grow: 1; display: flex; flex-direction: column">
+<section style="background: #0D3B2A; color: #F3EDE0; padding: 20px 20px 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 14px">
+<div class="guilloche" style="position: absolute; width: 400px; height: 400px; border-radius: 50%; right: -220px; top: -220px"></div>
+<h1 style="position: relative; margin: 0; font-size: 36px; line-height: 1; font-weight: 800; letter-spacing: -0.04em">Second-hand, <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #F5B82E">near you in Lagos.</span></h1>
+<span style="position: relative; font-size: 14px; color: #C9D3C4">Tap the bell to open notifications.</span>
+</section>
+<div style="padding: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="background: #FFFFFF; border-radius: 14px; overflow: hidden"><div class="photo" style="height: 130px; background-color: #E4DBC6"></div><div style="padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="num" style="font-size: 18px; font-weight: 800">₦280,000</span><span style="font-size: 13px; font-weight: 600">PlayStation 5 Slim</span></div></div>
+<div style="background: #FFFFFF; border-radius: 14px; overflow: hidden"><div class="photo" style="height: 130px; background-color: #DCD3BF"></div><div style="padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="num" style="font-size: 18px; font-weight: 800">₦240,000</span><span style="font-size: 13px; font-weight: 600">iPhone 12, 128GB</span></div></div>
+<div style="background: #FFFFFF; border-radius: 14px; overflow: hidden"><div class="photo" style="height: 130px; background-color: #E9E1CF"></div><div style="padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="num" style="font-size: 18px; font-weight: 800">₦120,000</span><span style="font-size: 13px; font-weight: 600">3-seater sofa, grey</span></div></div>
+<div style="background: #FFFFFF; border-radius: 14px; overflow: hidden"><div class="photo" style="height: 130px; background-color: #DFD6C2"></div><div style="padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="num" style="font-size: 18px; font-weight: 800">₦15,000</span><span style="font-size: 13px; font-weight: 600">Samsung A14</span></div></div>
+</div>
+</div>
+
+
+
+
+</div>
+</body>
+</html>

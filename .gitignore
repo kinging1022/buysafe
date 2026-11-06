@@ -8,6 +8,8 @@ backend/db.sqlite3
 backend/.env
 backend/staticfiles/
 backend/media/
+# Deal videos and chat photos (never public).
+backend/private_media/
 
 # Node / Vue
 frontend/node_modules/
@@ -20,3 +22,8 @@ frontend/.env
 *.log
 .env
 .env.local
+.DS_Store
+.vercel/
+
+# Celery beat's local schedule state
+backend/celerybeat-schedule*

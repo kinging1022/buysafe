@@ -1,6 +1,5 @@
 <script setup>
-// TODO placeholder for pages that aren't built yet (/sell, /browse, /messages,
-// /wallet, /profile/phone, listing pages).
+// TODO placeholder for pages that aren't built yet (/profile/phone).
 import AppHeader from '@/components/account/AppHeader.vue'
 import { useAuthStore } from '@/stores/auth'
 import '@/styles/account.css'

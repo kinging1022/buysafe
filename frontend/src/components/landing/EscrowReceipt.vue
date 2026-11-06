@@ -1,7 +1,7 @@
 <template>
-  <figure class="receipt perf" aria-label="Example escrow receipt: PlayStation 5 Slim, ₦280,000 held safe">
+  <figure class="receipt perf" aria-label="Example deal receipt: PlayStation 5 Slim, ₦280,000 held by our payment partner">
     <div class="receipt__head">
-      <span>ESCROW RECEIPT</span><span>No. BS-004213</span>
+      <span>DEAL RECEIPT</span><span>No. BS-004213</span>
     </div>
     <div class="dash"></div>
 
@@ -28,7 +28,7 @@
       </li>
       <li class="row" aria-current="step">
         <span class="dot dot--held"></span>
-        <span class="row__label row__label--held">Held by buysafe</span>
+        <span class="row__label row__label--held">Held by payment partner</span>
         <span class="row__time row__time--held">NOW</span>
       </li>
       <li class="row row--todo">

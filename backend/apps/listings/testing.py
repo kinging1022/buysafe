@@ -3,6 +3,7 @@
 from io import BytesIO
 
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.utils import timezone
 from PIL import Image
 
 from apps.escrow.models import Transaction
@@ -28,6 +29,21 @@ def make_listing(seller, approval=Listing.Approval.APPROVED, **extra):
     extra.setdefault("description", "Works well. Small dent on the left door.")
     extra["category"] = category(extra.pop("category_slug", "home-appliances"))
     return Listing.objects.create(seller=seller, approval_status=approval, **extra)
+
+
+def make_payout_account(user, bank_code="000014", account_number="0123454521"):
+    """A verified payout account (listings can't take payment without one)."""
+    from apps.payments.models import PayoutAccount
+
+    return PayoutAccount.objects.create(
+        user=user,
+        bank_code=bank_code,
+        bank_name="Access Bank",
+        account_number=account_number,
+        account_last4=account_number[-4:],
+        account_name=f"{user.last_name.upper()} {user.first_name.upper()}",
+        verified_at=timezone.now(),
+    )
 
 
 def make_tx(listing, buyer, status, **extra):

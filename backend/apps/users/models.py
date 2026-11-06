@@ -80,6 +80,7 @@ class PhoneVerification(models.Model):
         SIGNUP = "signup", "Sign up"
         PASSWORD_RESET = "password_reset", "Password reset"
         CHANGE_PHONE = "change_phone", "Change phone"
+        CHANGE_PAYOUT = "change_payout", "Change payout account"
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="phone_verifications")
     phone = models.CharField(max_length=14)

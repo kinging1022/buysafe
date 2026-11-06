@@ -34,9 +34,9 @@ export const SOFA_EXAMPLE = (() => {
 })()
 
 export const PAGE_META = {
-  title: "buysafe — Pay for it. We hold the money until you've seen it.",
+  title: 'buysafe — Buy and sell used items safely.',
   description:
-    'Buy and sell used things anywhere in Nigeria without the “send money first” wahala. Your payment sits locked with us until you meet, check the item, and say it’s good.',
+    'Buy and sell pre-owned items safely anywhere in Nigeria, without the “send money first” wahala. Meet, check the item and confirm before the seller gets paid.',
 }
 
 // TODO: production origin (og:url) and a 1200×630 share image (og:image).

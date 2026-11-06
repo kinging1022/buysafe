@@ -67,3 +67,33 @@ export async function upload(path, formData, { method = 'POST', onProgress } = {
     xhr.send(formData)
   })
 }
+
+/**
+ * PUT raw bytes (one chunk of a resumable upload). Same result shape as api().
+ * `headers` carries e.g. Content-Range.
+ */
+export async function putBytes(path, blob, headers = {}) {
+  try {
+    await ensureCsrf()
+    const res = await fetch(`/api${path}`, {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/octet-stream',
+        'X-CSRFToken': cookie('csrftoken'),
+        ...headers,
+      },
+      body: blob,
+    })
+    let data = null
+    try {
+      data = await res.json()
+    } catch {
+      // empty or non-JSON body
+    }
+    return { ok: res.ok, status: res.status, data }
+  } catch {
+    return { ok: false, status: 0, data: null }
+  }
+}

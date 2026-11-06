@@ -3,6 +3,7 @@ from django.core.files.storage import default_storage
 from django.db import transaction
 from rest_framework import serializers
 
+from apps.escrow.models import Transaction
 from apps.users.states import NG_STATES
 
 from . import fees
@@ -21,6 +22,7 @@ class MyListingSerializer(serializers.ModelSerializer):
     meetup_at = serializers.DateTimeField(allow_null=True)
     payout = serializers.IntegerField(allow_null=True)
     sold_at = serializers.DateTimeField(allow_null=True)
+    deal_id = serializers.SerializerMethodField()
 
     class Meta:
         model = Listing
@@ -37,8 +39,16 @@ class MyListingSerializer(serializers.ModelSerializer):
             "meetup_at",
             "payout",
             "sold_at",
+            "deal_id",
         ]
         read_only_fields = fields
+
+    def get_deal_id(self, listing):
+        if listing.display_status == listing_status.IN_ESCROW:
+            return listing.active_deal_id
+        if listing.display_status == listing_status.SOLD:
+            return listing.sold_deal_id
+        return None
 
     def get_first_image_url(self, listing):
         return default_storage.url(listing.first_image) if listing.first_image else None
@@ -81,6 +91,51 @@ class PublicListingSerializer(serializers.ModelSerializer):
             "first_name": seller.first_name,
             "last_initial": seller.last_name[:1].upper(),
             "avatar_color": seller.avatar_color,
+        }
+
+
+class ListingDetailSerializer(serializers.ModelSerializer):
+    """The listing page, as anyone sees it. Expects a listing annotated by
+    status.with_display_status(). Never the seller's phone or address."""
+
+    display_status = serializers.CharField()
+    category = serializers.SerializerMethodField()
+    photos = serializers.SerializerMethodField()
+    seller = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Listing
+        fields = [
+            "id",
+            "title",
+            "description",
+            "price",
+            "condition",
+            "category",
+            "state",
+            "area",
+            "created_at",
+            "display_status",
+            "photos",
+            "seller",
+        ]
+        read_only_fields = fields
+
+    def get_category(self, listing):
+        return {"slug": listing.category.slug, "label": listing.category.name}
+
+    def get_photos(self, listing):
+        return [p.image.url for p in listing.photos.all()]
+
+    def get_seller(self, listing):
+        seller = listing.seller
+        sold_count = Transaction.objects.filter(listing__seller=seller, status=Transaction.Status.COMPLETED).count()
+        return {
+            "first_name": seller.first_name,
+            "last_initial": seller.last_name[:1].upper(),
+            "avatar_color": seller.avatar_color,
+            "member_since": seller.date_joined,
+            "sold_count": sold_count,
         }
 
 

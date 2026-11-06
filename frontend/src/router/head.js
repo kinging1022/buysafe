@@ -5,13 +5,16 @@ import { PAGE_META, SITE_URL, OG_IMAGE } from '../config/landing.js'
 export function headTags(meta = {}) {
   const title = meta.title ? withBrand(meta.title) : PAGE_META.title
   const description = meta.description ?? PAGE_META.description
+  // Share cards can differ from the page's own title and description.
+  const ogTitle = meta.ogTitle ?? title
+  const ogDescription = meta.ogDescription ?? description
   const tags = [
     ['name', 'description', description],
     ['property', 'og:type', 'website'],
     ['property', 'og:site_name', 'buysafe'],
     ['property', 'og:locale', 'en_NG'],
-    ['property', 'og:title', title],
-    ['property', 'og:description', description],
+    ['property', 'og:title', ogTitle],
+    ['property', 'og:description', ogDescription],
     ['name', 'twitter:card', OG_IMAGE ? 'summary_large_image' : 'summary'],
   ]
   if (SITE_URL) tags.push(['property', 'og:url', SITE_URL])

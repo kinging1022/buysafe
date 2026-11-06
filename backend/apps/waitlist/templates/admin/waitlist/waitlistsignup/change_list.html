@@ -1,0 +1,18 @@
+{% extends "admin/change_list.html" %}
+
+{% block result_list %}
+  {% if state_counts %}
+    <details open style="margin-bottom: 16px;">
+      <summary><strong>Signups by state</strong> (follows the filters and search)</summary>
+      <table style="margin-top: 8px;">
+        <thead><tr><th>State</th><th style="text-align: right;">Signups</th></tr></thead>
+        <tbody>
+          {% for row in state_counts %}
+            <tr><td>{{ row.label }}</td><td style="text-align: right;">{{ row.n }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </details>
+  {% endif %}
+  {{ block.super }}
+{% endblock %}

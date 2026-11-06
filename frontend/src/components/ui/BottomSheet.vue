@@ -1,5 +1,6 @@
 <script setup>
-import { nextTick, onBeforeUnmount, useTemplateRef, watch } from 'vue'
+import { useTemplateRef } from 'vue'
+import { useModal } from '@/composables/useModal'
 
 // A mobile sheet over the page: a modal dialog on paper. `full` makes it the
 // full-height Filters sheet; otherwise it hugs its content (Condition).
@@ -12,47 +13,7 @@ const props = defineProps({
 const emit = defineEmits(['close'])
 
 const panel = useTemplateRef('panel')
-let returnTo = null
-
-const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-
-function onKeydown(e) {
-  if (e.key === 'Escape') {
-    e.stopPropagation()
-    emit('close')
-  } else if (e.key === 'Tab' && panel.value) {
-    // Keep Tab inside the sheet.
-    const items = [...panel.value.querySelectorAll(FOCUSABLE)].filter((el) => !el.disabled)
-    if (!items.length) return
-    const first = items[0]
-    const last = items[items.length - 1]
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault()
-      last.focus()
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault()
-      first.focus()
-    }
-  }
-}
-
-watch(
-  () => props.open,
-  async (open) => {
-    if (open) {
-      returnTo = document.activeElement
-      document.body.style.overflow = 'hidden'
-      await nextTick()
-      const target = panel.value?.querySelector('[data-autofocus]') || panel.value?.querySelector(FOCUSABLE)
-      target?.focus()
-    } else {
-      document.body.style.overflow = ''
-      returnTo?.focus?.()
-    }
-  },
-)
-
-onBeforeUnmount(() => (document.body.style.overflow = ''))
+const { onKeydown } = useModal(panel, () => props.open, () => emit('close'))
 </script>
 
 <template>

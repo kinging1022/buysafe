@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — deals and messages</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}
+.photo{background:repeating-linear-gradient(135deg, rgba(18,20,16,.035) 0 10px, rgba(18,20,16,0) 10px 20px)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.mono{font-family:'IBM Plex Mono',monospace}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 1440px; min-height: 1120px; margin: 0 auto; display: flex; flex-direction: column; background: #F3EDE0; overflow: hidden">
+
+<header style="flex-shrink: 0; background: #0D3B2A; color: #F3EDE0; padding: 0 96px; height: 76px; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 48px">
+<a href="/" style="text-decoration: none; color: #F3EDE0; font-size: 28px; font-weight: 800; letter-spacing: -0.04em">buysafe<span style="color: #F5B82E">.</span></a>
+<nav style="display: flex; gap: 32px; font-size: 16px; font-weight: 500"><a href="/listings" style="text-decoration: none; color: #F3EDE0">Browse</a><a href="/deals" aria-current="page" style="text-decoration: none; color: #F3EDE0; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #F5B82E; padding-bottom: 4px">Deals &amp; messages</a><a href="#" style="text-decoration: none; color: #F3EDE0; display: flex; align-items: center; gap: 8px">Notifications<span class="mono num" style="min-width: 20px; height: 20px; padding: 0 6px; box-sizing: border-box; border-radius: 10px; background: #F5B82E; color: #121410; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">2</span></a></nav>
+</div>
+<div style="display: flex; align-items: center; gap: 20px">
+<a href="/sell" style="text-decoration: none; background: #F5B82E; color: #121410; font-size: 15px; font-weight: 700; padding: 12px 20px; border-radius: 10px">Sell something</a>
+<a href="/profile" aria-label="Your profile" style="width: 44px; height: 44px; border-radius: 50%; background: #F5B82E; color: #121410; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 800; font-size: 16px; box-shadow: 0 0 0 2px #0D3B2A, 0 0 0 4px rgba(243,237,224,.5)">TA</a>
+</div>
+</header>
+
+<main style="flex-grow: 1; padding: 56px 96px 96px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-size: 72px; line-height: 1; font-weight: 800; letter-spacing: -0.045em">Deals &amp; <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #1E6B45">messages.</span></h1>
+<span style="font-size: 17px; color: #3E4139">Every chat belongs to a deal. Deals waiting on you come first.</span>
+</div>
+<div role="tablist" aria-label="Deal status" style="display: flex; gap: 6px; padding: 6px; background: #E6DDC9; border-radius: 14px">
+<button type="button" role="tab" aria-selected="true" style="height: 44px; padding: 0 20px; border: 0; border-radius: 10px; font-size: 16px; font-weight: 700; background: #121410; color: #F3EDE0">Active <span class="mono num" style="font-weight: 500; opacity: .7">· 0</span></button><button type="button" role="tab" aria-selected="false" style="height: 44px; padding: 0 20px; border: 0; border-radius: 10px; font-size: 16px; font-weight: 700; background: transparent; color: #3E4139">Completed <span class="mono num" style="font-weight: 500; opacity: .7">· 0</span></button><button type="button" role="tab" aria-selected="false" style="height: 44px; padding: 0 20px; border: 0; border-radius: 10px; font-size: 16px; font-weight: 700; background: transparent; color: #3E4139">Refunded <span class="mono num" style="font-weight: 500; opacity: .7">· 0</span></button>
+</div>
+</div>
+
+
+
+
+<div style="border: 1.5px dashed rgba(18,20,16,.3); border-radius: 20px; padding: 56px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+<span style="font-size: 34px; font-weight: 800; letter-spacing: -0.03em">No deals yet.</span>
+<span style="font-size: 17px; line-height: 1.55; color: #3E4139; max-width: 620px">When you buy something or someone pays for your item, the deal and its chat appear here. Chat only opens after payment, so everyone is protected.</span>
+<a href="/listings" style="margin-top: 8px; height: 52px; display: flex; align-items: center; padding: 0 24px; text-decoration: none; background: #0D3B2A; color: #F3EDE0; border-radius: 12px; font-size: 16px; font-weight: 700">Browse items</a>
+</div>
+
+</main>
+
+</div>
+</body>
+</html>

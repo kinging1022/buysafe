@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { api, upload } from '@/api/http'
 import { useAuthStore } from '@/stores/auth'
 import { NG_STATES, stateLabel } from '@/config/states'
-import { REVIEW_SLA } from '@/config/account'
+import { REVIEW_SLA, ROUTES } from '@/config/account'
 import { CONDITIONS } from '@/config/listing'
 import { naira } from '@/utils/format'
 import { useMediaQuery } from '@/composables/useMediaQuery'
@@ -61,6 +61,14 @@ function writeDraft(value) {
     // storage unavailable: the form still works, it just won't survive a refresh
   }
 }
+
+// No payout account yet: the "PAYOUT NEEDED" note above Submit
+// (design/payout-1-empty-desktop). Submitting still works.
+const needsPayout = ref(false)
+onMounted(async () => {
+  const res = await api('/me/payout-account/')
+  needsPayout.value = res.ok && !res.data.account
+})
 
 onMounted(async () => {
   api('/categories/').then((res) => res.ok && (categories.value = res.data))
@@ -487,6 +495,11 @@ const focusState = () => document.getElementById('sf-state')?.focus()
               <span id="sf-area-help" class="hint">Buyers see the area, never your street address.</span>
             </div>
           </section>
+
+          <div v-if="needsPayout" class="payout-note">
+            <span class="payout-note__k">PAYOUT NEEDED</span>
+            <span>You can submit now, but buyers can only pay once you’ve <RouterLink :to="ROUTES.payout">added your payout account</RouterLink>. It takes a minute.</span>
+          </div>
 
           <div class="submit-row">
             <button type="submit" class="submit" :disabled="submitting || !!lockedReason || loadingListing">
@@ -1152,5 +1165,32 @@ const focusState = () => document.getElementById('sf-state')?.focus()
   .bar {
     padding: 14px 20px calc(22px + env(safe-area-inset-bottom, 0px));
   }
+}
+
+/* design/payout-1-empty-desktop: "IN THE SELL FORM, ABOVE SUBMIT FOR REVIEW". */
+.payout-note {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: var(--paper-deep);
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.payout-note a {
+  font-weight: 700;
+}
+
+.payout-note__k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--amber-ink);
+  padding-top: 3px;
+  white-space: nowrap;
 }
 </style>

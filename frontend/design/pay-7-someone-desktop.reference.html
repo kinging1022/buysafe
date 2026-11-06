@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — pay into escrow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}a:hover{color:#1E6B45}
+.photo{background:repeating-linear-gradient(135deg, rgba(18,20,16,.035) 0 12px, rgba(18,20,16,0) 12px 24px)}
+.perf{position:relative}
+.perf::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:20px;background:radial-gradient(circle at 10px 0, transparent 9px, #F3EDE0 10px) 0 0/20px 20px repeat-x}
+.dash{border-top:1.5px dashed rgba(18,20,16,.28)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.mono{font-family:'IBM Plex Mono',monospace}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 1440px; min-height: 1060px; margin: 0 auto; position: relative; overflow: hidden; background: #F3EDE0; display: flex; flex-direction: column">
+
+<header style="flex-shrink: 0; background: #0D3B2A; color: #F3EDE0; padding: 0 96px; height: 76px; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 48px">
+<a href="/" style="text-decoration: none; color: #F3EDE0; font-size: 28px; font-weight: 800; letter-spacing: -0.04em">buysafe<span style="color: #F5B82E">.</span></a>
+<nav style="display: flex; gap: 32px; font-size: 16px; font-weight: 500"><a href="/listings" style="text-decoration: none; color: #F3EDE0; border-bottom: 2px solid #F5B82E; padding-bottom: 4px">Browse</a><a href="/deals" style="text-decoration: none; color: #F3EDE0; display: flex; align-items: center; gap: 8px">Deals &amp; messages<span class="mono num" style="min-width: 20px; height: 20px; padding: 0 6px; box-sizing: border-box; border-radius: 10px; background: #F5B82E; color: #121410; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">1</span></a><a href="#" style="text-decoration: none; color: #F3EDE0">Notifications</a></nav>
+</div>
+<a href="/profile" aria-label="Your profile" style="width: 44px; height: 44px; border-radius: 50%; background: #7FD1FF; color: #121410; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 800; font-size: 16px; box-shadow: 0 0 0 2px #0D3B2A, 0 0 0 4px rgba(243,237,224,.5)">AN</a>
+</header>
+
+<main style="flex-grow: 1; padding: 40px 96px; display: grid; grid-template-columns: 1fr 460px; gap: 64px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="photo" style="height: 520px; background-color: #E4DBC6; border-radius: 20px; display: flex; align-items: center; justify-content: center"><span class="mono" style="font-size: 12px; letter-spacing: .12em; color: rgba(18,20,16,.4)">LISTING PHOTOS</span></div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px"><span class="photo" style="height: 96px; border-radius: 12px; background-color: #E4DBC6"></span><span class="photo" style="height: 96px; border-radius: 12px; background-color: #DCD3BF"></span><span class="photo" style="height: 96px; border-radius: 12px; background-color: #E9E1CF"></span><span class="photo" style="height: 96px; border-radius: 12px; background-color: #DFD6C2"></span><span class="photo" style="height: 96px; border-radius: 12px; background-color: #E4DBC6"></span></div>
+</div>
+<aside style="display: flex; flex-direction: column; gap: 18px">
+<span class="mono" style="align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .12em; padding: 6px 10px; border-radius: 999px; background: #F5B82E; color: #121410">LIVE · SOMEONE IS PAYING</span>
+<h1 style="margin: 0; font-size: 48px; line-height: 1; font-weight: 800; letter-spacing: -0.04em">Samsung fridge, 2 doors</h1>
+<span class="num" style="font-size: 60px; font-weight: 800; letter-spacing: -0.045em; line-height: 1">₦185,000</span>
+<span style="font-size: 16px; color: #5B5E55">Surulere, Lagos · Tolu A.</span>
+
+
+
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<button type="button" disabled="disabled" class="num" style="height: 62px; border: 0; border-radius: 14px; background: #D8D0BE; color: #6E7068; font-size: 19px; font-weight: 700; cursor: not-allowed">Buy now · ₦185,000</button>
+<button type="button" disabled="disabled" style="height: 58px; border: 1.5px solid rgba(18,20,16,.2); background: transparent; color: #8C8E85; border-radius: 14px; font-size: 18px; font-weight: 700; cursor: not-allowed">Make an offer</button>
+<div role="status" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: #E6DDC9; border-radius: 12px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #F5B82E; margin-top: 6px; flex-shrink: 0; box-shadow: 0 0 0 4px rgba(245,184,46,.3)"></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 700">Someone is paying for this now.</span><span class="num" style="font-size: 14px; color: #3E4139">If their transfer doesn’t arrive, it’s available again in about 24 min. We’ll notify you.</span></span></div>
+</div>
+
+
+
+</aside>
+</main>
+
+
+
+</div>
+</body>
+</html>

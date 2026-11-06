@@ -1,6 +1,6 @@
 // What a profile card (desktop) or row (mobile) shows for each display status.
 // Copy is from design/profile-tab-all-*.reference.html.
-import { REVIEW_SLA, listingLinks } from '@/config/account'
+import { REVIEW_SLA, dealLinks, listingLinks } from '@/config/account'
 import { dayTime, naira, relativeTime } from '@/utils/format'
 
 const MUTED = '#5B5E55'
@@ -15,6 +15,10 @@ function interestNote(n) {
 
 const withPeriod = (text) => (/[.!?]$/.test(text) ? text : `${text}.`)
 
+// "Open deal" / "Receipt" go to the deal page; older sales without one fall
+// back to the listing.
+const dealOrListing = (item) => (item.deal_id ? dealLinks(item.deal_id).view : listingLinks(item.id).view)
+
 /** Desktop card: meta line, note line and the primary action. */
 export function cardDisplay(item) {
   const links = listingLinks(item.id)
@@ -27,7 +31,7 @@ export function cardDisplay(item) {
         meta,
         note: item.meetup_at ? `Buyer paid. Meeting set for ${dayTime(item.meetup_at)}.` : 'Buyer paid. Deal in progress.',
         noteColor: AMBER,
-        action: { label: 'Open deal', to: links.deal },
+        action: { label: 'Open deal', to: dealOrListing(item) },
       }
     case 'pending':
       return { meta, note: `Usually reviewed within ${REVIEW_SLA}`, noteColor: MUTED, action: { label: 'Edit', to: links.edit } }
@@ -38,7 +42,7 @@ export function cardDisplay(item) {
         meta,
         note: item.payout != null ? `You received ${naira(item.payout)}` : '',
         noteColor: GREEN,
-        action: { label: 'Receipt', to: links.receipt },
+        action: { label: 'Receipt', to: dealOrListing(item) },
       }
     default: // live
       return { meta, note: interestNote(item.interest_count), noteColor: MUTED, action: { label: 'Edit', to: links.edit } }
@@ -53,7 +57,7 @@ export function rowDisplay(item) {
       return {
         line: item.meetup_at ? `Meeting set for ${dayTime(item.meetup_at)}` : 'Buyer paid. Deal in progress.',
         color: AMBER,
-        to: links.deal,
+        to: dealOrListing(item),
       }
     case 'pending':
       return { line: `Reviewed within ${REVIEW_SLA}`, color: MUTED, to: links.view }
@@ -67,7 +71,7 @@ export function rowDisplay(item) {
       return {
         line: item.payout != null ? `You received ${naira(item.payout)}` : `Sold ${relativeTime(item.sold_at)}`,
         color: GREEN,
-        to: links.receipt,
+        to: dealOrListing(item),
       }
     default: // live
       return {

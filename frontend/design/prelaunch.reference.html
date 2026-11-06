@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>buysafe · Buy second-hand without sending money first</title>
+<meta name="description" content="buysafe holds your money until you’ve met the seller, checked the item and said yes. Coming soon to every state in Nigeria. Join the waitlist.">
+<meta name="theme-color" content="#0D3B2A">
+<meta property="og:title" content="buysafe · Money that waits">
+<meta property="og:description" content="Buy and sell used things anywhere in Nigeria. Your payment is held until you’ve seen the item. Join the waitlist.">
+<meta property="og:type" content="website">
+<!-- <meta property="og:image" content="https://YOUR-DOMAIN/og.png"> -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D3B2A'/%3E%3Ctext x='13' y='46' font-family='Arial' font-weight='800' font-size='40' fill='%23F3EDE0'%3Eb%3C/text%3E%3Ccircle cx='47' cy='42' r='5' fill='%23F5B82E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root{
+  --forest:#0D3B2A; --forest-2:#0A3123; --marigold:#F5B82E; --paper:#F3EDE0; --paper-deep:#E6DDC9;
+  --ink:#121410; --ink-2:#3E4139; --muted:#5B5E55; --on-forest:#C9D3C4; --on-forest-2:#A9BBA9;
+  --line-dark:rgba(243,237,224,.16); --line:rgba(18,20,16,.14);
+  --sans:'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif:'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --pad:clamp(20px, 5vw, 96px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+img{max-width:100%;display:block}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.it{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-0.01em}
+.wrap{max-width:1248px;margin:0 auto}
+.skip{position:absolute;left:-999px;top:8px;background:var(--marigold);color:var(--ink);padding:10px 14px;border-radius:8px;z-index:10}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:3px}
+
+/* nav */
+.nav{background:var(--forest);color:var(--paper);border-bottom:1px solid var(--line-dark)}
+.nav .wrap{height:72px;padding:0 var(--pad);max-width:none;display:flex;align-items:center;justify-content:space-between}
+.logo{text-decoration:none;font-size:26px;font-weight:800;letter-spacing:-0.04em}
+.logo span{color:var(--marigold)}
+.nav-cta{text-decoration:none;font-weight:700;font-size:15px;background:var(--marigold);color:var(--ink);height:44px;padding:0 18px;border-radius:999px;display:inline-flex;align-items:center}
+
+/* hero */
+.hero{background:var(--forest);color:var(--paper);padding:clamp(56px,9vw,112px) var(--pad) clamp(56px,7vw,96px);text-align:center;overflow:hidden}
+.eyebrow{font-size:clamp(15px,1.6vw,19px);font-weight:600;color:var(--marigold);margin:0}
+h1{margin:14px 0 0;font-size:clamp(60px,10.5vw,148px);line-height:.9;font-weight:800;letter-spacing:-0.055em}
+.lede{margin:24px auto 0;max-width:640px;font-size:clamp(18px,2vw,23px);line-height:1.45;color:var(--on-forest);text-wrap:pretty}
+
+/* waitlist form */
+.join{margin:36px auto 0;max-width:640px;text-align:left}
+.join-row{display:grid;grid-template-columns:1.3fr 1fr auto;gap:10px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:600;color:var(--on-forest-2)}
+.join input,.join select{font:inherit;font-size:17px;height:54px;border-radius:14px;border:1.5px solid rgba(243,237,224,.28);background:rgba(243,237,224,.06);color:var(--paper);padding:0 16px;width:100%}
+.join select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23F3EDE0' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.join select option{color:var(--ink)}
+.join input::placeholder{color:rgba(243,237,224,.45)}
+.join input:focus,.join select:focus{border-color:var(--marigold);outline:none;background-color:rgba(243,237,224,.1)}
+.phone{position:relative}
+.phone span{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:17px;color:var(--on-forest-2);pointer-events:none}
+.phone input{padding-left:72px}
+.btn{font:inherit;font-weight:700;font-size:17px;height:54px;padding:0 26px;border:0;border-radius:999px;background:var(--marigold);color:var(--ink);cursor:pointer;white-space:nowrap;align-self:end}
+.btn:hover{background:#FFC845}
+.btn[disabled]{opacity:.6;cursor:wait}
+.roles{margin:14px 0 0;padding:0;border:0;display:flex;flex-wrap:wrap;gap:8px}
+.roles legend{font-size:13px;font-weight:600;color:var(--on-forest-2);padding:0;margin-bottom:8px;float:left;width:100%}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(243,237,224,.28);font-size:15px;font-weight:600;color:var(--on-forest)}
+.chip input:checked + span{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.chip input:focus-visible + span{outline:3px solid var(--marigold);outline-offset:2px}
+.note{margin:12px 0 0;font-size:14px;color:var(--on-forest-2)}
+.msg{margin:14px 0 0;font-size:16px;font-weight:600;min-height:1px}
+.msg.err{color:#FFB4A3}
+.done{display:none;text-align:center;border:1.5px solid rgba(243,237,224,.22);border-radius:20px;padding:28px 24px}
+.done strong{display:block;font-size:24px;letter-spacing:-0.02em}
+.done p{margin:8px 0 0;color:var(--on-forest)}
+.join.is-done form{display:none}
+.join.is-done .done{display:block}
+
+/* hero visual: the PS5 deal */
+.stage{margin:clamp(56px,7vw,88px) auto 0;max-width:1100px;display:grid;grid-template-columns:1fr minmax(0,440px) 1fr;align-items:center;gap:32px}
+.callout{display:flex;flex-direction:column;gap:6px}
+.callout.l{text-align:right;align-items:flex-end}
+.callout.r{text-align:left;align-items:flex-start}
+.callout small{font-size:15px;color:var(--on-forest-2)}
+.callout b{font-size:clamp(30px,3.6vw,48px);font-weight:700;letter-spacing:-0.035em;line-height:1}
+.callout em{font-style:normal;font-size:22px;font-weight:700;letter-spacing:-0.015em}
+.rule{width:100%;max-width:150px;border-top:1px solid rgba(243,237,224,.32);margin-top:8px;position:relative}
+.callout.l .rule::after,.callout.r .rule::before{content:"";position:absolute;top:-5px;width:9px;height:9px;border-radius:50%}
+.callout.l .rule::after{right:-4px;background:var(--marigold)}
+.callout.r .rule::before{left:-4px;background:var(--paper)}
+.deal{background:var(--paper);color:var(--ink);border-radius:28px;padding:14px;text-align:left;box-shadow:0 40px 80px rgba(0,0,0,.35),0 2px 0 rgba(0,0,0,.08)}
+.photo{aspect-ratio:4/3;border-radius:18px;background:var(--paper-deep);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo .ph{font-size:13px;font-weight:600;color:var(--muted)}
+.deal-body{padding:18px 10px 8px;display:flex;flex-direction:column;gap:18px}
+.deal-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.deal-top h3{margin:0;font-size:21px;letter-spacing:-0.015em}
+.deal-top p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.pill{flex-shrink:0;font-size:13px;font-weight:700;background:var(--marigold);color:var(--ink);padding:7px 12px;border-radius:999px}
+.track{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.track::before{content:"";position:absolute;left:12.5%;right:12.5%;top:6px;border-top:1px solid var(--line)}
+.track::after{content:"";position:absolute;left:12.5%;width:25%;top:5px;border-top:3px solid var(--marigold)}
+.track li{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);position:relative;z-index:1;text-align:center}
+.track i{width:13px;height:13px;border-radius:50%;background:var(--paper);box-shadow:inset 0 0 0 1.5px #8C8E85}
+.track .on{color:var(--ink)}
+.track .on i{background:var(--ink);box-shadow:none}
+.track .now{color:#7A4C06}
+.track .now i{background:var(--marigold);box-shadow:0 0 0 5px rgba(245,184,46,.3)}
+.trust{margin:clamp(48px,6vw,80px) auto 0;max-width:1248px;padding-top:24px;border-top:1px solid var(--line-dark);display:flex;justify-content:center;flex-wrap:wrap;gap:12px 48px;font-size:15px;color:var(--on-forest-2)}
+
+/* sections */
+section{padding:clamp(72px,10vw,140px) var(--pad)}
+.kicker{font-size:15px;font-weight:700;color:#8A5A08;margin:0 0 14px}
+h2{margin:0;font-size:clamp(40px,6vw,80px);line-height:.98;font-weight:800;letter-spacing:-0.045em;text-wrap:balance}
+.sub{margin:18px 0 0;font-size:clamp(18px,1.8vw,21px);line-height:1.5;color:var(--ink-2);max-width:640px;text-wrap:pretty}
+
+.old{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:end}
+.old .it{display:block;color:var(--muted);font-size:clamp(32px,4vw,52px);line-height:1.05;margin-top:12px}
+.old-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.old-cols div{border-top:2px solid var(--ink);padding-top:16px}
+.old-cols b{display:block;font-size:19px;margin-bottom:8px}
+.old-cols p{margin:0;font-size:16px;line-height:1.55;color:var(--ink-2)}
+
+.how{background:var(--paper-deep)}
+.steps{margin:clamp(40px,5vw,72px) 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;counter-reset:s}
+.steps li{border-top:1px solid rgba(18,20,16,.3);padding-top:22px;display:flex;flex-direction:column;gap:12px;counter-increment:s}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--serif);font-size:64px;line-height:.8;color:#A86A0C}
+.steps b{font-size:23px;letter-spacing:-0.02em}
+.steps p{margin:0;font-size:16px;line-height:1.55;color:var(--ink-2)}
+
+.wrong-grid{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.wrong-grid div{border-top:2px solid var(--ink);padding-top:20px}
+.wrong-grid b{display:block;font-size:22px;letter-spacing:-0.02em;line-height:1.2}
+.wrong-grid p{margin:10px 0 0;font-size:16px;line-height:1.6;color:var(--ink-2)}
+
+.fees{background:var(--ink);color:var(--paper)}
+.fees .kicker{color:var(--marigold)}
+.fees .sub{color:#C8C8BC}
+.fees-grid{display:grid;grid-template-columns:1fr minmax(0,520px);gap:clamp(40px,6vw,96px);align-items:center}
+.table{border-top:1px solid rgba(243,237,224,.2)}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid rgba(243,237,224,.2);font-size:18px}
+.row span{color:#C8C8BC}
+.row b{font-size:26px;letter-spacing:-0.02em}
+.row.buyer b{color:#B6E36B}
+.fine{margin:16px 0 0;font-size:14px;color:#A9A99C}
+
+.vendors{background:var(--marigold)}
+.vendors-in{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.vendors .kicker{color:var(--ink)}
+.vendors .sub{color:var(--ink)}
+.dark-link{text-decoration:none;background:var(--ink);color:var(--paper);font-weight:700;font-size:17px;height:54px;padding:0 26px;border-radius:999px;display:inline-flex;align-items:center}
+
+.final{background:var(--forest);color:var(--paper);text-align:center}
+.final h2 .it{color:var(--marigold)}
+.final .sub{color:var(--on-forest);margin-left:auto;margin-right:auto}
+
+footer{background:var(--forest-2);color:var(--on-forest-2);padding:28px var(--pad);font-size:14px}
+footer .wrap{max-width:none;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{text-decoration:none;color:var(--paper)}
+footer nav{display:flex;gap:24px}
+
+@media (max-width:900px){
+  .join-row{grid-template-columns:1fr}
+  .btn{width:100%}
+  .stage{grid-template-columns:1fr;gap:0;max-width:440px}
+  .callout{display:none}
+  .old,.fees-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .wrong-grid{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:560px){
+  .old-cols,.steps{grid-template-columns:1fr}
+  .nav-cta{padding:0 14px;font-size:14px}
+  .trust{flex-direction:column;align-items:center;gap:8px}
+  .deal{border-radius:22px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#join">Skip to the waitlist</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="buysafe home">buysafe<span>.</span></a>
+    <a class="nav-cta" href="#join">Join the waitlist</a>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <p class="eyebrow">Coming soon to all 36 states and the FCT</p>
+  <h1>Money that <span class="it">waits.</span></h1>
+  <p class="lede">Buy anything second-hand, anywhere in Nigeria. We hold your money until you’ve met the seller, checked the item and said yes.</p>
+
+  <div class="join" id="join"></div>
+
+  <div class="stage" aria-label="Example deal">
+    <div class="callout l">
+      <small>Held in escrow</small>
+      <b class="num">₦280,000</b>
+      <span class="rule"></span>
+    </div>
+    <div class="deal">
+      <div class="photo">
+        <!-- Put your PS5 photo next to this file as ps5.jpg -->
+        <img src="ps5.jpg" alt="PlayStation 5 Slim listed for sale" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'PlayStation 5 Slim'}))">
+      </div>
+      <div class="deal-body">
+        <div class="deal-top">
+          <div>
+            <h3>PlayStation 5 Slim</h3>
+            <p>Used 1 year · Ikeja, Lagos</p>
+          </div>
+          <span class="pill num">₦280,000 held</span>
+        </div>
+        <ol class="track" aria-label="Where the money is">
+          <li class="on"><i></i>Paid</li>
+          <li class="now"><i></i>Held</li>
+          <li><i></i>Checked</li>
+          <li><i></i>Released</li>
+        </ol>
+      </div>
+    </div>
+    <div class="callout r">
+      <span class="rule"></span>
+      <em>Seller is paid</em>
+      <small>the moment you say yes</small>
+    </div>
+  </div>
+
+  <div class="trust">
+    <span>Every user is phone-verified</span>
+    <span>Every message stays in the app</span>
+    <span>Refunds go back to the account you paid from</span>
+  </div>
+</div>
+
+<section aria-labelledby="old-h">
+  <div class="wrap old">
+    <div>
+      <p class="kicker">Why we’re building this</p>
+      <h2 id="old-h">Somebody always has to go first.</h2>
+      <span class="it">And sometimes they lose.</span>
+    </div>
+    <div class="old-cols">
+      <div><b>If you’re buying</b><p>You send the transfer, they say “received”. Then the photos stop matching, or the number stops going through.</p></div>
+      <div><b>If you’re selling</b><p>You clean it, pack it, cross the city to meet, and the buyer is “on the way” for two hours before going quiet.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <p class="kicker">How it works</p>
+    <h2 id="how-h">Nobody pays first. The money waits <span class="it">in the middle.</span></h2>
+    <ol class="steps">
+      <li><b>Pay into escrow</b><p>Send a bank transfer to an account number made just for your deal. The seller sees the money is there. Nobody can touch it.</p></li>
+      <li><b>See it, live</b><p>The seller records a live video of the item in the app. Camera only, no gallery. You rate it, or ask to see more.</p></li>
+      <li><b>Meet and check</b><p>Agree on a time and a public place in the app chat. Switch it on, look it over.</p></li>
+      <li><b>Say yes</b><p>Confirm with the item in your hands and the seller is paid straight away.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="wrong-h">
+  <div class="wrap">
+    <p class="kicker">If it goes wrong</p>
+    <h2 id="wrong-h">We planned for the bad days first.</h2>
+    <div class="wrong-grid">
+      <div><b>The seller doesn’t send a video in time.</b><p>The deal is cancelled and your money goes back to the account you paid from, in full.</p></div>
+      <div><b>The video doesn’t look right.</b><p>Ask for another one and say exactly what to show. After three, you can cancel for a full refund.</p></div>
+      <div><b>The item isn’t what you saw.</b><p>Don’t confirm. Report it in the app. Your money stays held while a real person reviews the deal.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="fees" aria-labelledby="fees-h">
+  <div class="wrap fees-grid">
+    <div>
+      <p class="kicker">Fees</p>
+      <h2 id="fees-h">Free to buy. Sellers pay only when it sells.</h2>
+      <p class="sub">The fee comes out of the payout, and you see the exact amount before you post.</p>
+    </div>
+    <div>
+      <div class="table num">
+        <div class="row buyer"><span>Buyers</span><b>₦0</b></div>
+        <div class="row"><span>Items under ₦10,000</span><b>₦1,500 flat</b></div>
+        <div class="row"><span>₦10,000 to ₦19,999</span><b>15%</b></div>
+        <div class="row"><span>₦20,000 and above</span><b>10%</b></div>
+      </div>
+      <p class="fine">Minimum listing price ₦2,000.</p>
+    </div>
+  </div>
+</section>
+
+<section class="vendors" aria-labelledby="v-h">
+  <div class="wrap vendors-in">
+    <div>
+      <p class="kicker">Run a declutter page?</p>
+      <h2 id="v-h">Stop chasing transfers. <span class="it">Bring it here.</span></h2>
+      <p class="sub">Every client’s items in one place, and buyers who have already paid before you leave the house.</p>
+    </div>
+    <a class="dark-link" href="#join" data-role="vendor">Join as a vendor</a>
+  </div>
+</section>
+
+<section class="final" aria-labelledby="final-h">
+  <div class="wrap">
+    <h2 id="final-h">Be first when we open <span class="it">in your state.</span></h2>
+    <p class="sub">One text when buysafe is live near you. Nothing else.</p>
+    <div class="join" id="join-2"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 buysafe</span>
+    <nav aria-label="Contact">
+      <a href="mailto:[YOUR EMAIL]">[YOUR EMAIL]</a>
+      <a href="https://instagram.com/[YOUR HANDLE]" rel="noopener">Instagram</a>
+    </nav>
+  </div>
+</footer>
+
+<template id="join-tpl">
+  <form novalidate>
+    <div class="join-row">
+      <div class="field">
+        <label for="phone-ID">Phone number</label>
+        <div class="phone"><span>+234</span><input id="phone-ID" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="803 123 4567" required></div>
+      </div>
+      <div class="field">
+        <label for="state-ID">Your state</label>
+        <select id="state-ID" name="state" required></select>
+      </div>
+      <button class="btn" type="submit">Join the waitlist</button>
+    </div>
+    <fieldset class="roles">
+      <legend>I want to</legend>
+      <label class="chip"><input type="radio" name="role" value="buy" checked><span>Buy</span></label>
+      <label class="chip"><input type="radio" name="role" value="sell"><span>Sell</span></label>
+      <label class="chip"><input type="radio" name="role" value="both"><span>Both</span></label>
+      <label class="chip"><input type="radio" name="role" value="vendor"><span>I run a declutter page</span></label>
+    </fieldset>
+    <p class="msg" role="status" aria-live="polite"></p>
+  </form>
+  <div class="done" role="status">
+    <strong>You’re on the list.</strong>
+    <p>We’ll text you when buysafe opens in <span class="done-state">your state</span>.</p>
+  </div>
+</template>
+
+<script>
+/* ===== Set this before you go live =====
+   Where sign-ups are sent, as JSON: {phone, state, role, source, joined_at}.
+   Works with Formspree (https://formspree.io/f/xxxx), a Google Apps Script URL,
+   or your own Django endpoint. Leave empty and the form will say it isn't ready. */
+const WAITLIST_ENDPOINT = '';
+
+const STATES = ['Abia','Adamawa','Akwa Ibom','Anambra','Bauchi','Bayelsa','Benue','Borno','Cross River','Delta','Ebonyi','Edo','Ekiti','Enugu','FCT Abuja','Gombe','Imo','Jigawa','Kaduna','Kano','Katsina','Kebbi','Kogi','Kwara','Lagos','Nasarawa','Niger','Ogun','Ondo','Osun','Oyo','Plateau','Rivers','Sokoto','Taraba','Yobe','Zamfara'];
+
+function mount(host, n){
+  const tpl = document.getElementById('join-tpl').innerHTML.replaceAll('-ID', '-' + n);
+  host.innerHTML = tpl;
+  const sel = host.querySelector('select');
+  sel.innerHTML = '<option value="" disabled selected>Choose</option>' + STATES.map(s => `<option>${s}</option>`).join('');
+  try { const s = localStorage.getItem('bs_state'); if (s) sel.value = s; } catch(e){}
+  const form = host.querySelector('form'), msg = host.querySelector('.msg'), btn = host.querySelector('.btn');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.className = 'msg'; msg.textContent = '';
+    let phone = form.phone.value.replace(/\D/g, '');
+    if (phone.startsWith('234')) phone = phone.slice(3);
+    if (phone.startsWith('0')) phone = phone.slice(1);
+    if (!/^[789][01]\d{8}$/.test(phone)) { return fail('Enter a Nigerian mobile number, like 0803 123 4567.', form.phone); }
+    if (!form.state.value) { return fail('Choose your state.', form.state); }
+    if (!WAITLIST_ENDPOINT) { return fail('The waitlist isn’t connected yet. Please check back soon.'); }
+    btn.disabled = true; btn.textContent = 'Joining…';
+    const data = { phone: '+234' + phone, state: form.state.value, role: form.role.value, source: location.hostname || 'local', joined_at: new Date().toISOString() };
+    try {
+      const r = await fetch(WAITLIST_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) });
+      if (!r.ok) throw new Error(r.status);
+      try { localStorage.setItem('bs_state', data.state); } catch(e){}
+      host.querySelector('.done-state').textContent = data.state;
+      host.classList.add('is-done');
+    } catch (err) {
+      fail('Something went wrong. Please try again.');
+    } finally { btn.disabled = false; btn.textContent = 'Join the waitlist'; }
+  });
+  function fail(text, el){ msg.className = 'msg err'; msg.textContent = text; if (el) el.focus(); }
+}
+mount(document.getElementById('join'), 1);
+mount(document.getElementById('join-2'), 2);
+
+document.querySelectorAll('[data-role="vendor"]').forEach(a => a.addEventListener('click', () => {
+  const r = document.querySelector('#join input[value="vendor"]'); if (r) r.checked = true;
+}));
+</script>
+</body>
+</html>

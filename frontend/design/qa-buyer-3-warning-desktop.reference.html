@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — listing questions (buyer)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}a:hover{color:#1E6B45}
+.photo{background:repeating-linear-gradient(135deg, rgba(18,20,16,.035) 0 10px, rgba(18,20,16,0) 10px 20px)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.mono{font-family:'IBM Plex Mono',monospace}
+textarea{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;color:#121410;outline:none}
+textarea::placeholder{color:#8C8E85}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 1440px; min-height: 1780px; margin: 0 auto; display: flex; flex-direction: column; background: #F3EDE0; overflow: hidden">
+
+<header style="background: #0D3B2A; color: #F3EDE0; padding: 0 96px; height: 76px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0">
+<div style="display: flex; align-items: center; gap: 48px">
+<a href="/" style="text-decoration: none; color: #F3EDE0; font-size: 28px; font-weight: 800; letter-spacing: -0.04em">buysafe<span style="color: #F5B82E">.</span></a>
+<nav style="display: flex; gap: 32px; font-size: 16px; font-weight: 500"><a href="/listings" style="text-decoration: none; color: #F3EDE0; border-bottom: 2px solid #F5B82E; padding-bottom: 4px">Browse</a><a href="/deals" style="text-decoration: none; color: #F3EDE0">Deals &amp; messages</a><a href="#" style="text-decoration: none; color: #F3EDE0; display: flex; align-items: center; gap: 8px">Notifications<span class="mono num" style="min-width: 20px; height: 20px; padding: 0 6px; box-sizing: border-box; border-radius: 10px; background: #F5B82E; color: #121410; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">2</span></a><a href="#" style="text-decoration: none; color: #F3EDE0">Wallet</a></nav>
+</div>
+<a href="/profile" aria-label="Your profile" style="width: 44px; height: 44px; border-radius: 50%; background: #7FD1FF; color: #121410; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 800; font-size: 16px; box-shadow: 0 0 0 2px #0D3B2A, 0 0 0 4px rgba(243,237,224,.5)">AN</a>
+</header>
+
+<div style="padding: 28px 96px 0; display: flex; align-items: center; gap: 16px; font-size: 15px; color: #5B5E55">
+<a href="/listings/842" style="font-weight: 600; text-decoration: none">←  Samsung fridge, 2 doors</a><span>/</span><span>Questions</span>
+</div>
+
+<main style="flex-grow: 1; padding: 28px 96px 96px; display: grid; grid-template-columns: 1fr 400px; gap: 72px; align-items: start">
+
+<section id="questions" style="display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 18px; border-bottom: 2px solid #121410">
+<h1 style="margin: 0; font-size: 56px; line-height: 1; font-weight: 800; letter-spacing: -0.04em">Questions <span class="num" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #A86A0C">3</span></h1>
+<span style="font-size: 17px; color: #3E4139">Ask Tolu anything before you pay. Answers are public, so everyone buys with the same facts.</span>
+</div>
+
+
+<div style="background: #FFFFFF; border-radius: 18px; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; border: 2px solid #A3361F; box-shadow: 0 0 0 4px rgba(163,54,31,.12)">
+<label for="q-text" style="font-size: 18px; font-weight: 700">Ask Tolu a question</label>
+<textarea id="q-text" rows="3" maxlength="320" placeholder="e.g. Does the freezer still get properly cold?" aria-describedby="q-help q-warn" style="box-sizing: border-box; padding: 14px 16px; background: #F7F3EA; border: 0; border-radius: 12px; line-height: 1.5; resize: none">Is it still available? Call me on 0803 555 1234</textarea>
+
+<div id="q-warn" role="alert" style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: rgba(163,54,31,.08); border-radius: 12px; font-size: 14px; line-height: 1.5; color: #3E4139"><span class="mono" style="font-size: 11px; font-weight: 600; letter-spacing: .1em; color: #A3361F; padding-top: 2px; white-space: nowrap">REMOVE PHONE NUMBER</span><span>Contact details can’t be shared before payment. Keeping it on buysafe is what keeps your money protected.</span></div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<span id="q-help" class="mono num" style="font-size: 11px; letter-spacing: .06em; color: #5B5E55">47 / 280 · PUBLIC ONCE ANSWERED · 3 QUESTIONS LEFT TODAY</span>
+<button type="button" aria-disabled="true" style="height: 48px; padding: 0 24px; border: 0; border-radius: 12px; background: #8C8E85; color: #F3EDE0; font-size: 16px; font-weight: 700; white-space: nowrap">Ask Tolu</button>
+</div>
+</div>
+
+
+
+
+
+
+
+<div style="display: flex; flex-direction: column">
+
+<article style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-bottom: 1px solid rgba(18,20,16,.15)">
+<div style="display: grid; grid-template-columns: 28px 1fr; gap: 8px"><span class="mono" style="font-size: 14px; font-weight: 600; color: #A86A0C; padding-top: 3px">Q</span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 18px; font-weight: 600; line-height: 1.4">Does the freezer compartment still freeze properly?</span><span class="mono num" style="font-size: 11px; color: #5B5E55">ADA N. · 3 DAYS AGO</span></span></div>
+<div style="display: grid; grid-template-columns: 28px 1fr; gap: 8px; margin-left: 36px; padding-left: 18px; border-left: 2px solid #1E6B45"><span class="mono" style="font-size: 14px; font-weight: 600; color: #1E6B45; padding-top: 2px">A</span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; line-height: 1.55; color: #2A2C26">Yes, it makes ice in about 3 hours. You’ll see it running in the live video after you pay.</span><span class="mono num" style="font-size: 11px; color: #1E6B45">TOLU · SELLER · 2 DAYS AGO</span></span></div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-bottom: 1px solid rgba(18,20,16,.15)">
+<div style="display: grid; grid-template-columns: 28px 1fr; gap: 8px"><span class="mono" style="font-size: 14px; font-weight: 600; color: #A86A0C; padding-top: 3px">Q</span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 18px; font-weight: 600; line-height: 1.4">Is the dent on the front or the side?</span><span class="mono num" style="font-size: 11px; color: #5B5E55">KUNLE O. · 2 DAYS AGO</span></span></div>
+<div style="display: grid; grid-template-columns: 28px 1fr; gap: 8px; margin-left: 36px; padding-left: 18px; border-left: 2px solid #1E6B45"><span class="mono" style="font-size: 14px; font-weight: 600; color: #1E6B45; padding-top: 2px">A</span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; line-height: 1.55; color: #2A2C26">Left door, lower corner. It’s clear in photo 3.</span><span class="mono num" style="font-size: 11px; color: #1E6B45">TOLU · SELLER · 2 DAYS AGO</span></span></div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-bottom: 1px solid rgba(18,20,16,.15)">
+<div style="display: grid; grid-template-columns: 28px 1fr; gap: 8px"><span class="mono" style="font-size: 14px; font-weight: 600; color: #A86A0C; padding-top: 3px">Q</span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 18px; font-weight: 600; line-height: 1.4">Can someone help load it onto a van?</span><span class="mono num" style="font-size: 11px; color: #5B5E55">CHIOMA E. · YESTERDAY</span></span></div>
+<div style="display: grid; grid-template-columns: 28px 1fr; gap: 8px; margin-left: 36px; padding-left: 18px; border-left: 2px solid #1E6B45"><span class="mono" style="font-size: 14px; font-weight: 600; color: #1E6B45; padding-top: 2px">A</span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; line-height: 1.55; color: #2A2C26">Yes, my gateman will help you carry it down.</span><span class="mono num" style="font-size: 11px; color: #1E6B45">TOLU · SELLER · YESTERDAY</span></span></div>
+</article>
+
+</div>
+
+
+
+</section>
+
+<aside style="display: flex; flex-direction: column; gap: 24px; position: relative">
+<div style="background: #FFFFFF; border-radius: 18px; padding: 20px; display: flex; gap: 16px; align-items: center">
+<span class="photo" style="width: 72px; height: 72px; border-radius: 12px; background-color: #E4DBC6; flex-shrink: 0"></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 17px; font-weight: 700">Samsung fridge, 2 doors</span><span class="num" style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em">₦185,000</span><span style="font-size: 13px; color: #5B5E55">Tolu A. · Surulere, Lagos</span></span>
+</div>
+<a href="/listings/842" class="num" style="height: 56px; display: flex; align-items: center; justify-content: center; text-decoration: none; background: #0D3B2A; color: #F3EDE0; border-radius: 14px; font-size: 17px; font-weight: 700">Buy now · ₦185,000</a>
+<div style="display: flex; flex-direction: column">
+<span class="mono" style="font-size: 11px; font-weight: 600; letter-spacing: .14em; color: #5B5E55; padding-bottom: 10px; border-bottom: 2px solid #121410">HOW QUESTIONS WORK</span>
+<div style="display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid rgba(18,20,16,.15); font-size: 14px; line-height: 1.5"><span style="font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1; color: #A86A0C">1</span><span>Only Tolu can answer, once per question.</span></div>
+<div style="display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid rgba(18,20,16,.15); font-size: 14px; line-height: 1.5"><span style="font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1; color: #A86A0C">2</span><span>Until it’s answered, only you and Tolu see your question.</span></div>
+<div style="display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid rgba(18,20,16,.15); font-size: 14px; line-height: 1.5"><span style="font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1; color: #A86A0C">3</span><span>No phone numbers, emails, links or @handles.</span></div>
+<div style="display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 0; font-size: 14px; line-height: 1.5"><span style="font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1; color: #A86A0C">4</span><span>Up to 3 questions per listing per day. Private chat opens after you pay.</span></div>
+</div>
+</aside>
+</main>
+
+</div>
+</body>
+</html>

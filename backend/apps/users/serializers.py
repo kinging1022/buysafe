@@ -54,6 +54,7 @@ class UserSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "masked_phone",
+            "email",
             "state",
             "area",
             "bio",

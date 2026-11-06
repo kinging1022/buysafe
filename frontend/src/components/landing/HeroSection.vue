@@ -8,17 +8,17 @@ import EscrowReceipt from './EscrowReceipt.vue'
     <div class="l-wrap hero__in">
       <div class="hero__copy">
         <div class="eyebrow hero__eyebrow">
-          <span class="d-only">ESCROW FOR SECOND-HAND THINGS · ALL 36 STATES + FCT</span>
-          <span class="m-only">ESCROW FOR SECOND-HAND · ALL OF NIGERIA</span>
+          <span class="d-only">THE PRE-OWNED MARKETPLACE · ALL 36 STATES + FCT</span>
+          <span class="m-only">PRE-OWNED MARKETPLACE · ALL OF NIGERIA</span>
         </div>
         <h1 id="hero-title">
           <!-- Kept on one line: the spaces between spans matter on mobile. -->
-          Pay for it. <span class="line">We <span class="serif-accent hold">hold</span> the</span> <span class="line">money until</span> <span class="line">you’ve seen it.</span>
+          Buy and <span class="line">sell used</span> <span class="line">items <span class="serif-accent safely">safely.</span></span>
         </h1>
         <p class="hero__sub">
           Buy and sell used things anywhere in Nigeria without the “send money first” wahala.
-          <span class="d-only">Your payment sits locked with us until you meet, check the item, and say it’s good.</span>
-          <span class="m-only">Your payment stays locked until you meet, check, and confirm.</span>
+          <span class="d-only">You meet, check the item and say it’s good before the seller gets paid.</span>
+          <span class="m-only">The seller gets paid only after you meet, check and confirm.</span>
         </p>
         <div class="hero__ctas">
           <RouterLink to="/listings" class="btn btn--accent">Browse items →</RouterLink>
@@ -27,7 +27,7 @@ import EscrowReceipt from './EscrowReceipt.vue'
         <ul class="hero__trust">
           <li>✓ Phone-verified users</li>
           <li>✓ Chat stays in-app</li>
-          <li>✓ Payments by {{ PAYMENT_PARTNER }}</li>
+          <li>✓ Payments held by {{ PAYMENT_PARTNER }}</li>
         </ul>
       </div>
 
@@ -79,7 +79,7 @@ h1 {
   display: block;
 }
 
-.hold {
+.safely {
   color: var(--accent);
 }
 
@@ -191,8 +191,9 @@ h1 {
     overflow: hidden;
   }
 
-  /* Mobile hero is set smaller and airier than the 390 reference, keeping
-     the desktop's four-line headline rhythm. */
+  /* Mobile hero is airier than the 390 reference. The headline is sized so
+     its last, longest line ("items safely.") spans the column, keeping the
+     stepped shape. */
   .hero__in {
     padding-top: 48px;
     padding-bottom: 64px;
@@ -204,14 +205,17 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(40px, 11.5vw, 48px);
+    font-size: clamp(48px, 17.5vw, 76px);
     line-height: 0.98;
   }
 
+  /* Smaller than the headline by about the desktop's ratio, with extra room
+     above so the two read as separate levels. */
   .hero__sub {
-    font-size: 17px;
-    line-height: 1.55;
-    margin-top: -4px;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-top: 8px;
+    max-width: 34ch;
   }
 
   .hero__ctas {
@@ -233,14 +237,13 @@ h1 {
   }
 
   .hero__trust {
-    flex-direction: column;
-    gap: 6px;
+    gap: 16px;
     font-size: 12px;
     letter-spacing: 0;
   }
 
   .hero__art {
-    padding: 24px 0 8px;
+    padding: 0 0 8px;
   }
 
   .ring--1 {

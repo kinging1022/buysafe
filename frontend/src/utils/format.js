@@ -52,3 +52,19 @@ export function shortAgo(iso, now = new Date()) {
   if (days < 365) return `${Math.floor(days / 30)}mo ago`
   return `${Math.floor(days / 365)}y ago`
 }
+
+/** Q&A meta: 'JUST NOW', '20 MIN AGO', '2H AGO', 'YESTERDAY', '3 DAYS AGO', '2 WKS AGO', '3 MOS AGO'. */
+export function qaAge(iso, now = new Date()) {
+  const then = new Date(iso)
+  const minutes = Math.floor((now - then) / 60000)
+  if (minutes < 1) return 'JUST NOW'
+  if (minutes < 60) return `${minutes} MIN AGO`
+  const startOfDay = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate())
+  const days = Math.round((startOfDay(now) - startOfDay(then)) / 86400000)
+  if (days <= 0) return `${Math.floor(minutes / 60)}H AGO`
+  if (days === 1) return 'YESTERDAY'
+  if (days < 7) return `${days} DAYS AGO`
+  if (days < 30) return `${Math.floor(days / 7)} WK${days < 14 ? '' : 'S'} AGO`
+  const months = Math.max(1, Math.floor(days / 30))
+  return `${months} MO${months === 1 ? '' : 'S'} AGO`
+}

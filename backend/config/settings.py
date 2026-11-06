@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+from celery.schedules import crontab
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,7 +32,9 @@ SECRET_KEY = 'django-insecure-tzr#^ma63-x=5pir&)tq0m!ru0e+7657fvx$id*d2(6lq@ft!4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Comma-separated. Empty allows only localhost while DEBUG is on; a dev tunnel
+# for webhooks needs its host here (".trycloudflare.com" covers every quick tunnel).
+ALLOWED_HOSTS = [h.strip() for h in os.environ.get('ALLOWED_HOSTS', '').split(',') if h.strip()]
 
 # The SPA calls the API through Vite's proxy in dev, so the browser's Origin is
 # the Vite server. Comma-separated; defaults cover `vite` (5173) and `vite preview` (4173).
@@ -58,6 +61,11 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.listings',
     'apps.escrow',
+    'apps.offers',
+    'apps.notifications',
+    'apps.payments',
+    'apps.deals',
+    'apps.waitlist',
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -167,6 +175,13 @@ REST_FRAMEWORK = {
         'otp_resend': '20/hour',  # per IP; the 5/hour per phone cap is in the view
         'password_reset': '20/hour',  # reset code requests, per IP; per phone as for sign-up
         'fee_quote': '60/min',  # the listing form's live payout line, per user
+        'offers': '30/hour',  # sending offers, per user
+        'questions': '20/hour',  # asking listing questions, per user (on top of 3 per listing per day)
+        'questions_ip': '40/hour',  # asking listing questions, per IP
+        'payout_lookup': '20/hour',  # bank name enquiries for the payout account, per user
+        'deal_messages': '120/hour',  # chat messages, per user
+        'waitlist': '5/min',  # pre-launch waitlist sign-ups, per IP
+        'waitlist_day': '30/day',  # same, per IP per day (apps.waitlist.throttles)
     },
 }
 
@@ -184,9 +199,95 @@ TERMII_BASE_URL = os.environ.get('TERMII_BASE_URL', '')  # your account's base U
 TERMII_SENDER_ID = os.environ.get('TERMII_SENDER_ID', '')
 TERMII_CHANNEL = os.environ.get('TERMII_CHANNEL', 'dnd')  # 'dnd' or 'generic'
 
+# ---------------------------------------------------------------------------
+# Offers. Shorten in .env to try the expiry locally (e.g. OFFER_TTL_MINUTES=2).
+OFFER_TTL_MINUTES = int(os.environ.get('OFFER_TTL_MINUTES', 48 * 60))
+# How long an accepted offer's price is held for its buyer. The item stays
+# buyable by anyone at full price meanwhile: first to pay gets it.
+OFFER_PRICE_HOLD_HOURS = int(os.environ.get('OFFER_PRICE_HOLD_HOURS', 24))
+
+# ---------------------------------------------------------------------------
+# Payments: bank transfer into an Anchor virtual account made for one deal. No
+# wallet, no balance. See apps/payments.
+# 'fake' (dev and tests: made-up accounts, nothing leaves the building) or 'anchor'.
+PAYMENTS_PROVIDER = os.environ.get('PAYMENTS_PROVIDER', 'fake' if DEBUG else 'anchor')
+# Shared secret for webhook signatures (the fake provider signs with HMAC-SHA256).
+PAYMENTS_WEBHOOK_SECRET = os.environ.get('PAYMENTS_WEBHOOK_SECRET', 'dev-webhook-secret' if DEBUG else '')
+# How long a buyer has to send the transfer; the listing is held for them meanwhile.
+PAYMENT_HOLD_MINUTES = int(os.environ.get('PAYMENT_HOLD_MINUTES', 30))
+# Deducted from refunds the buyer caused (a wrong amount), whole naira.
+# TODO: the real figure ([BANK FEE] in the UI) once Anchor confirms it.
+REFUND_BANK_FEE = int(os.environ.get('REFUND_BANK_FEE', 0))
+# Anchor (getanchor.co); see apps/payments/providers/anchor.py. Pay with
+# Transfer only exists in Anchor's production environment.
+ANCHOR_BASE_URL = os.environ.get('ANCHOR_BASE_URL', 'https://api.getanchor.co')
+ANCHOR_API_KEY = os.environ.get('ANCHOR_API_KEY', '')
+# The secret token set when creating the webhook (with supportIncluded=true).
+ANCHOR_WEBHOOK_SECRET = os.environ.get('ANCHOR_WEBHOOK_SECRET', '')
+# Our deposit account that refunds and payouts are sent from ("…-anc_acc").
+ANCHOR_ACCOUNT_ID = os.environ.get('ANCHOR_ACCOUNT_ID', '')
+# Where our fee goes when a payout arrives (Anchor's REVENUE deposit account).
+ANCHOR_REVENUE_ACCOUNT_ID = os.environ.get('ANCHOR_REVENUE_ACCOUNT_ID', '')
+# Anchor needs an email per virtual account; used when the buyer has none.
+ANCHOR_CUSTOMER_EMAIL = os.environ.get('ANCHOR_CUSTOMER_EMAIL', '')
+# Prefixed to our references so they stay unique at Anchor across databases.
+ANCHOR_REFERENCE_PREFIX = os.environ.get('ANCHOR_REFERENCE_PREFIX', 'bs')
+# How a deal's account is made: 'paywithtransfer' (production) or 'nuban' (the
+# sandbox, which has no Pay with Transfer; never in production, a NUBAN never expires).
+ANCHOR_COLLECT = os.environ.get('ANCHOR_COLLECT', 'paywithtransfer')
+# The fake provider's name enquiry returns this for any account (except numbers
+# ending in 8: a stranger's name, and 9: the bank can't be reached).
+FAKE_ACCOUNT_NAME = os.environ.get('FAKE_ACCOUNT_NAME', 'ADEYEMI TOLU OLUWASEUN')
+
+# Full bank account numbers are stored encrypted (Fernet). Set a key in
+# production: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+FIELD_ENCRYPTION_KEY = os.environ.get('FIELD_ENCRYPTION_KEY', '')
+if not FIELD_ENCRYPTION_KEY and DEBUG:
+    import base64
+    import hashlib
+
+    FIELD_ENCRYPTION_KEY = base64.urlsafe_b64encode(hashlib.sha256(SECRET_KEY.encode()).digest()).decode()
+
+# Deal videos and chat photos: never public. Served only to the deal's two
+# people, through the API (apps/deals/views.py).
+PRIVATE_MEDIA_ROOT = Path(os.environ.get('PRIVATE_MEDIA_ROOT', BASE_DIR / 'private_media'))
+
+# Automated reminder calls. 'fake' logs; 'termii' is not wired yet (see
+# apps/deals/calls.py): confirm Termii's voice API first.
+CALL_SERVICE = os.environ.get('CALL_SERVICE', 'fake')
+
+# ---------------------------------------------------------------------------
+# Celery: the minute sweeps (holds, deadlines, reminders), transfer retries and
+# the daily reconciliation. Run a worker and beat in production:
+#   celery -A config worker -l info   and   celery -A config beat -l info
+# In DEBUG, tasks run inline unless CELERY_EAGER=0, and `manage.py run_sweeps`
+# stands in for beat.
+CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+CELERY_TASK_ALWAYS_EAGER = os.environ.get('CELERY_EAGER', '1' if DEBUG else '0') == '1'
+CELERY_TASK_EAGER_PROPAGATES = True
+CELERY_TIMEZONE = 'Africa/Lagos'
+CELERY_BEAT_SCHEDULE = {
+    'expire-payment-holds': {'task': 'apps.payments.tasks.expire_holds', 'schedule': 60.0},
+    'retry-transfers': {'task': 'apps.payments.tasks.retry_transfers', 'schedule': 60.0},
+    'deal-sweep': {'task': 'apps.deals.tasks.sweep', 'schedule': 60.0},
+    'expire-offers': {'task': 'apps.offers.tasks.expire_offers', 'schedule': 60.0},
+    'daily-reconciliation': {
+        'task': 'apps.payments.tasks.reconcile',
+        'schedule': crontab(hour=6, minute=0),
+    },
+}
+
+# Reconciliation mismatches and failed transfers are emailed here.
+ADMINS = [tuple(a.split(':', 1)) for a in os.environ.get('ADMINS', '').split(',') if ':' in a]
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {'console': {'class': 'logging.StreamHandler'}},
-    'loggers': {'apps.users': {'handlers': ['console'], 'level': 'INFO'}},
+    'loggers': {
+        'apps.users': {'handlers': ['console'], 'level': 'INFO'},
+        'apps.notifications': {'handlers': ['console'], 'level': 'INFO'},
+        'apps.payments': {'handlers': ['console'], 'level': 'INFO'},
+        'apps.deals': {'handlers': ['console'], 'level': 'INFO'},
+    },
 }

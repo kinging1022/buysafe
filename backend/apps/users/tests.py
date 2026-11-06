@@ -237,7 +237,7 @@ class ProfileTests(TestCase):
         body = self.client.get("/api/me/").json()
         self.assertEqual(
             set(body),
-            {"id", "first_name", "last_name", "masked_phone", "state", "area", "bio", "avatar_color",
+            {"id", "first_name", "last_name", "masked_phone", "email", "state", "area", "bio", "avatar_color",
              "date_joined", "phone_verified"},
         )
         self.assertEqual(body["masked_phone"], "+234 803 ••• 4567")

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — payout account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}a:hover{color:#1E6B45}
+.photo{background:repeating-linear-gradient(135deg, rgba(18,20,16,.035) 0 10px, rgba(18,20,16,0) 10px 20px)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.mono{font-family:'IBM Plex Mono',monospace}
+input{font-family:'IBM Plex Mono',monospace;font-size:20px;color:#121410;outline:none}
+input::placeholder{color:#8C8E85}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 1440px; min-height: 1400px; margin: 0 auto; display: flex; flex-direction: column; background: #F3EDE0; overflow: hidden">
+
+<header style="flex-shrink: 0; background: #0D3B2A; color: #F3EDE0; padding: 0 96px; height: 76px; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 48px">
+<a href="/" style="text-decoration: none; color: #F3EDE0; font-size: 28px; font-weight: 800; letter-spacing: -0.04em">buysafe<span style="color: #F5B82E">.</span></a>
+<nav style="display: flex; gap: 32px; font-size: 16px; font-weight: 500"><a href="/listings" style="text-decoration: none; color: #F3EDE0">Browse</a><a href="/deals" style="text-decoration: none; color: #F3EDE0">Deals &amp; messages</a><a href="#" style="text-decoration: none; color: #F3EDE0">Notifications</a></nav>
+</div>
+<a href="/profile" aria-label="Your profile" style="width: 44px; height: 44px; border-radius: 50%; background: #F5B82E; color: #121410; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 800; font-size: 16px; box-shadow: 0 0 0 2px #0D3B2A, 0 0 0 4px rgba(243,237,224,.5)">TA</a>
+</header>
+
+<div style="padding: 48px 96px 0; display: flex; flex-direction: column; gap: 14px">
+<a href="/profile" style="font-size: 15px; font-weight: 600; text-decoration: none">←  Back to profile</a>
+<span class="mono" style="font-size: 13px; font-weight: 500; letter-spacing: .14em; color: #5B5E55; margin-top: 8px">PAYOUT ACCOUNT</span>
+<h1 style="margin: 0; font-size: 72px; line-height: .98; font-weight: 800; letter-spacing: -0.045em">Where should we <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #1E6B45">pay you?</span></h1>
+</div>
+
+<main style="flex-grow: 1; padding: 40px 96px 96px; display: grid; grid-template-columns: 640px 1fr; gap: 80px; align-items: start">
+
+<div style="background: #FFFFFF; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 22px">
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; font-weight: 600">Bank
+<span style="height: 56px; box-sizing: border-box; background: #F7F3EA; border: 1.5px solid rgba(18,20,16,.18); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: 18px; font-weight: 600; color: #121410">Access Bank<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#121410" stroke-width="1.8" aria-hidden="true"><path d="M3 5l4 4 4-4"></path></svg></span>
+</label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; font-weight: 600">Account number
+<input type="text" inputmode="numeric" maxlength="10" placeholder="10 digits" value="0123 4567 89" class="num" style="height: 60px; box-sizing: border-box; padding: 0 16px; background: #F7F3EA; border: 2px solid #A3361F; border-radius: 12px; letter-spacing: .08em; box-shadow: none">
+</label>
+
+
+
+
+
+
+
+
+
+
+<div role="alert" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 18px; background: #E6DDC9; border-radius: 14px">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 700">We couldn’t reach Access Bank.</span><span style="font-size: 14px; color: #3E4139">Check the number and try again in a moment.</span></span>
+<button type="button" style="height: 44px; padding: 0 18px; border: 1.5px solid #121410; background: transparent; border-radius: 10px; font-size: 15px; font-weight: 700">Try again</button>
+</div>
+
+
+<button type="button" aria-disabled="true" style="height: 60px; border: 0; border-radius: 14px; background: #8C8E85; color: #F3EDE0; font-size: 18px; font-weight: 700">Save payout account</button>
+<span style="font-size: 13px; line-height: 1.5; color: #5B5E55; margin-top: -8px">Changing it later needs a code sent to your phone.</span>
+
+
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column">
+<span class="mono" style="font-size: 12px; font-weight: 600; letter-spacing: .14em; color: #5B5E55; padding-bottom: 10px; border-bottom: 2px solid #121410">WHY WE NEED THIS</span>
+<div style="display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid rgba(18,20,16,.15); font-size: 15px; line-height: 1.5"><span style="font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1; color: #A86A0C">1</span><span>When a buyer confirms, the money goes straight to this account. There’s no wallet to withdraw from.</span></div>
+<div style="display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid rgba(18,20,16,.15); font-size: 15px; line-height: 1.5"><span style="font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1; color: #A86A0C">2</span><span>Your listings can’t take payment until it’s set.</span></div>
+<div style="display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 0; font-size: 15px; line-height: 1.5"><span style="font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1; color: #A86A0C">3</span><span>The name must match yours, so nobody can redirect your money.</span></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="mono" style="font-size: 12px; font-weight: 600; letter-spacing: .14em; color: #5B5E55; padding-bottom: 10px; border-bottom: 2px solid #121410">MISSING-ACCOUNT WARNING · WHERE IT APPEARS</span>
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: #8C8E85">ON YOUR LISTING PAGE (OWNER VIEW)</span>
+<div role="alert" style="display: flex; gap: 14px; align-items: center; padding: 16px 18px; background: rgba(163,54,31,.07); border: 1.5px solid #A3361F; border-radius: 14px">
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1"><span style="font-size: 16px; font-weight: 700">Buyers can’t pay for this yet.</span><span style="font-size: 14px; line-height: 1.45; color: #3E4139">Add a payout account so we know where to send your money.</span></span>
+<a href="/profile/payout" style="height: 44px; display: flex; align-items: center; padding: 0 16px; text-decoration: none; background: #121410; color: #F3EDE0; border-radius: 10px; font-size: 14px; font-weight: 700; white-space: nowrap">Add account</a>
+</div>
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: #8C8E85; margin-top: 6px">IN THE SELL FORM, ABOVE “SUBMIT FOR REVIEW”</span>
+<div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: #E6DDC9; border-radius: 12px; font-size: 14px; line-height: 1.5; color: #3E4139"><span class="mono" style="font-size: 10px; font-weight: 600; letter-spacing: .1em; color: #A86A0C; padding-top: 3px; white-space: nowrap">PAYOUT NEEDED</span><span>You can submit now, but buyers can only pay once you’ve <a href="/profile/payout" style="font-weight: 700">added your payout account</a>. It takes a minute.</span></div>
+</div>
+</div>
+</main>
+
+</div>
+</body>
+</html>

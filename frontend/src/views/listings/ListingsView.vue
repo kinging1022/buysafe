@@ -427,10 +427,47 @@ const itemsLabel = (n) => `${n.toLocaleString('en-NG')} ${n === 1 ? 'item' : 'it
         </button>
       </template>
     </BottomSheet>
+
+    <!-- Signed in, mobile: Sell left the header, so it floats here (design/header-spec).
+         The spacer keeps the last row of results clear of it. -->
+    <div v-if="isMobile && auth.user" class="fab-space" aria-hidden="true"></div>
+    <RouterLink v-if="isMobile && auth.user && !sheetOpen" to="/sell" class="fab-sell">+ Sell</RouterLink>
   </div>
 </template>
 
 <style scoped>
+.fab-sell {
+  position: fixed;
+  z-index: 40;
+  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  height: 56px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(18, 20, 16, 0.25);
+}
+
+.fab-space {
+  height: 96px;
+}
+
+.acct .fab-sell,
+.acct .fab-sell:hover {
+  color: var(--ink);
+}
+
+.fab-sell:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
 .m {
   display: none;
 }

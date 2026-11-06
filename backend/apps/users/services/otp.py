@@ -1,7 +1,9 @@
-"""OTP delivery behind a small interface so the provider can be swapped or faked.
+"""OTP delivery (and plain SMS) behind a small interface so the provider can
+be swapped or faked.
 
     send_otp(phone) -> pin_id
     verify_otp(pin_id, code) -> bool
+    send_sms(phone, text) -> None   (notifications; templates in apps/notifications/sms.py)
 
 The code itself is never stored or logged here; only the provider's pin_id is
 kept (in PhoneVerification).
@@ -34,6 +36,9 @@ class OtpService:
     def verify_otp(self, pin_id: str, code: str) -> bool:
         raise NotImplementedError
 
+    def send_sms(self, phone: str, text: str) -> None:
+        raise NotImplementedError
+
 
 class FakeOtpService(OtpService):
     """For DEBUG and tests: every code is 000000. Sends nothing."""
@@ -47,6 +52,9 @@ class FakeOtpService(OtpService):
 
     def verify_otp(self, pin_id, code):
         return code == self.CODE
+
+    def send_sms(self, phone, text):
+        logger.info("FakeOtpService: SMS 'sent' to %s: %s", mask_phone(phone), text)
 
 
 class TermiiOtpService(OtpService):
@@ -108,6 +116,24 @@ class TermiiOtpService(OtpService):
         # Documented success: {"verified": "True", ...}. Failure shapes aren't
         # documented, so anything else counts as not verified.
         return status == 200 and str(data.get("verified")).lower() == "true"
+
+    def send_sms(self, phone, text):
+        """Termii Messaging API: POST {BASE_URL}/api/sms/send (plain SMS).
+        https://developers.termii.com/messaging-api"""
+        status, data = self._post(
+            "/api/sms/send",
+            {
+                "api_key": self.api_key,
+                "to": phone.lstrip("+"),
+                "from": self.sender_id,
+                "sms": text,
+                "type": "plain",
+                "channel": self.channel,
+            },
+        )
+        if status != 200 or not data.get("message_id"):
+            logger.warning("Termii SMS failed for %s: HTTP %s", mask_phone(phone), status)
+            raise OtpSendError("The SMS provider rejected the request.")
 
 
 SERVICES = {

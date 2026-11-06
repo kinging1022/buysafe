@@ -72,6 +72,9 @@ def with_card_details(queryset):
         meetup_at=Subquery(active.values("meetup_at")[:1]),
         payout=Subquery(completed.values("payout")[:1]),
         sold_at=Subquery(completed.values("completed_at")[:1]),
+        # The deal page for "Open deal" / "Receipt" (older transactions have none).
+        active_deal_id=Subquery(active.values("deal__id")[:1]),
+        sold_deal_id=Subquery(completed.values("deal__id")[:1]),
     )
 
 

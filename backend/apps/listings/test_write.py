@@ -151,7 +151,7 @@ class EditListingTests(TestCase):
         return (client or self.client).patch(f"/api/listings/{self.listing.pk}/", data, format="multipart")
 
     def test_get_for_prefill(self):
-        body = self.client.get(f"/api/listings/{self.listing.pk}/").json()
+        body = self.client.get(f"/api/listings/{self.listing.pk}/").json()["owner"]
         self.assertEqual(body["category"], "home-appliances")
         self.assertEqual([p["id"] for p in body["photos"]], self.photo_ids)
 
@@ -163,7 +163,7 @@ class EditListingTests(TestCase):
 
     def test_resubmitting_rejected_clears_reason(self):
         Listing.objects.filter(pk=self.listing.pk).update(approval_status="rejected", rejection_reason="Too dark.")
-        self.assertEqual(self.client.get(f"/api/listings/{self.listing.pk}/").json()["rejection_reason"], "Too dark.")
+        self.assertEqual(self.client.get(f"/api/listings/{self.listing.pk}/").json()["owner"]["rejection_reason"], "Too dark.")
         self.patch({"description": "New bright photos taken in daylight, works perfectly."})
         self.listing.refresh_from_db()
         self.assertEqual((self.listing.approval_status, self.listing.rejection_reason), ("pending", ""))
@@ -195,7 +195,8 @@ class EditListingTests(TestCase):
     def test_only_owner(self):
         stranger = APIClient()
         stranger.force_login(make_user("+2348034444444"))
-        self.assertEqual(stranger.get(f"/api/listings/{self.listing.pk}/").status_code, 404)
+        # Anyone can see the live listing, but not the owner's edit details.
+        self.assertNotIn("owner", stranger.get(f"/api/listings/{self.listing.pk}/").json())
         self.assertEqual(self.patch({"title": "Mine now, thanks"}, client=stranger).status_code, 404)
 
     def test_not_editable_in_escrow_or_sold(self):

@@ -1,6 +1,7 @@
 import hashlib
 
 from django.core.cache import cache
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.generics import ListAPIView
@@ -10,6 +11,13 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.offers import rules as offer_rules
+from apps.offers.models import Offer
+from apps.offers.serializers import MyOfferSerializer
+from apps.offers.services import declined_notice, last_declined_amount, offer_blocker
+from apps.payments.holds import active_hold
+from apps.payments.models import PaymentIntent
+from apps.payments.services import buy_blocker, payout_ready
 from apps.users.permissions import IsVerifiedUser
 
 from . import browse, fees
@@ -17,11 +25,13 @@ from . import status as listing_status
 from .models import Category, Listing
 from .serializers import (
     CategorySerializer,
+    ListingDetailSerializer,
     ListingWriteSerializer,
     MyListingSerializer,
     OwnerListingSerializer,
     PublicListingSerializer,
 )
+from .viewing import record_view
 
 
 class MyListingsPagination(PageNumberPagination):
@@ -79,16 +89,82 @@ class ListingsView(ListAPIView):
 
 
 class ListingDetailView(APIView):
-    """GET/PATCH /api/listings/{id}/: the owner's own listing (404 for anyone
-    else). Editing sends it back to review. Not editable in escrow or sold."""
+    """GET /api/listings/{id}/ (public): the listing page, plus a `viewer` block
+    saying what the person looking can do, and for the owner an `owner` block
+    (the edit form's prefill, the fee at full price, views). Pending and
+    rejected listings are the owner's only. Records a view.
+
+    PATCH (owner): edit. Editing sends it back to review. Not editable in
+    escrow or sold."""
 
     parser_classes = [MultiPartParser, FormParser, JSONParser]
+
+    def get_permissions(self):
+        return [AllowAny()] if self.request.method == "GET" else [IsVerifiedUser()]
 
     def get_listing(self, request, pk):
         return get_object_or_404(Listing, pk=pk, seller=request.user, is_deleted=False)
 
     def get(self, request, pk):
-        return Response(OwnerListingSerializer(self.get_listing(request, pk)).data)
+        listing = get_object_or_404(
+            listing_status.with_display_status(Listing.objects.select_related("seller", "category")).prefetch_related(
+                "photos"
+            ),
+            pk=pk,
+        )
+        is_owner = request.user.is_authenticated and listing.seller_id == request.user.pk
+        if not is_owner and listing.display_status in (listing_status.PENDING, listing_status.REJECTED):
+            raise Http404
+        record_view(listing, request)
+
+        data = ListingDetailSerializer(listing).data
+        data["offer_rules"] = offer_rules.as_dict(listing.price, last_declined_amount(listing, request.user))
+        data["viewer"] = self.viewer(listing, request.user, is_owner)
+        if is_owner:
+            listing.refresh_from_db(fields=["view_count"])
+            data["owner"] = {
+                **OwnerListingSerializer(listing).data,
+                "view_count": listing.view_count,
+                # No payout account: the red "Buyers can’t pay for this yet." banner.
+                "payout_ready": payout_ready(request.user),
+            }
+        return Response(data)
+
+    @staticmethod
+    def viewer(listing, user, is_owner):
+        signed_in = user.is_authenticated
+        my_offer = Offer.objects.open_to_buyer().filter(listing=listing, buyer=user).first() if signed_in else None
+        accepted = Offer.objects.price_held().filter(listing=listing, buyer=user).first() if signed_in else None
+        offer_block = offer_blocker(listing, user)
+        buy_block = buy_blocker(listing, user)
+        hold = active_hold(listing)
+        mine = hold is not None and signed_in and hold.buyer_id == user.pk
+        return {
+            "is_owner": is_owner,
+            "my_open_offer": MyOfferSerializer(my_offer).data if my_offer else None,
+            # "Your ₦X offer wasn’t accepted." after a final decline.
+            "declined_amount": None if my_offer else declined_notice(listing, user),
+            # OFFER ACCEPTED · FIRST TO PAY GETS IT (the price is held until then).
+            "accepted_offer": (
+                {"id": accepted.pk, "amount": accepted.amount, "price_held_until": accepted.price_held_until}
+                if accepted
+                else None
+            ),
+            "can_offer": offer_block is None,
+            "offer_reason": offer_block.code if offer_block else None,
+            "can_buy": buy_block is None,
+            # own_listing, not_live, no_payout ("The seller hasn’t finished setup
+            # yet.") or held ("Someone is paying for this now.").
+            "buy_reason": buy_block.code if buy_block else None,
+            # Someone else's 30-minute payment window: when it frees up.
+            "held_until": hold.expires_at if hold and not mine else None,
+            # The viewer's own transfer in progress, to resume the pay screen.
+            "my_payment": (
+                {"id": hold.intent_id, "expires_at": hold.expires_at}
+                if mine and hold.intent.status == PaymentIntent.Status.AWAITING
+                else None
+            ),
+        }
 
     def patch(self, request, pk):
         listing = self.get_listing(request, pk)

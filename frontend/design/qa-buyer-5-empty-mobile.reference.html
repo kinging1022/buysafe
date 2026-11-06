@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>buysafe — listing questions, buyer (mobile)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;font-family:'Bricolage Grotesque',sans-serif;color:#121410;background:#F3EDE0;-webkit-font-smoothing:antialiased}
+a{color:#0D3B2A}
+.photo{background:repeating-linear-gradient(135deg, rgba(18,20,16,.035) 0 10px, rgba(18,20,16,0) 10px 20px)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.mono{font-family:'IBM Plex Mono',monospace}
+textarea{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;color:#121410;outline:none}
+textarea::placeholder{color:#8C8E85}
+button{font-family:'Bricolage Grotesque',sans-serif;cursor:pointer}
+</style>
+<div style="max-width: 390px; min-height: 1640px; margin: 0 auto; display: flex; flex-direction: column; background: #F3EDE0; overflow: hidden; position: relative">
+
+<header style="flex-shrink: 0; height: 64px; background: #0D3B2A; display: flex; align-items: center; justify-content: space-between; padding: 0 14px 0 9px">
+<div style="display: flex; align-items: center"><button type="button" aria-label="Open menu" style="width: 44px; height: 44px; border: 0; background: transparent; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; padding: 0"><span style="width: 18px; height: 2px; background: #F3EDE0; border-radius: 1px"></span><span style="width: 18px; height: 2px; background: #F3EDE0; border-radius: 1px"></span></button><a href="/" style="margin-left: 1px; text-decoration: none; color: #F3EDE0; font-size: 22px; font-weight: 800; letter-spacing: -0.04em">buysafe<span style="color: #F5B82E">.</span></a></div>
+<div style="display: flex; align-items: center"><a href="/notifications" aria-label="Notifications, 2 unread" style="width: 44px; height: 44px; position: relative; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F3EDE0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg><span class="mono" aria-hidden="true" style="position: absolute; left: 25px; top: 6px; min-width: 18px; height: 18px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #F5B82E; color: #121410; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #0D3B2A">2</span></a><a href="/profile" aria-label="Your profile" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; text-decoration: none"><span style="width: 32px; height: 32px; border-radius: 50%; background: #7FD1FF; color: #121410; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1.5px #0D3B2A, 0 0 0 3px rgba(243,237,224,.55)">AN</span></a></div>
+</header>
+
+<a href="/listings/842" style="flex-shrink: 0; text-decoration: none; color: #121410; display: flex; gap: 12px; align-items: center; padding: 14px 20px; background: #FFFFFF; border-bottom: 1px solid rgba(18,20,16,.12)">
+<span class="photo" style="width: 52px; height: 52px; border-radius: 10px; background-color: #E4DBC6; flex-shrink: 0"></span>
+<span style="display: flex; flex-direction: column; gap: 1px; flex-grow: 1"><span style="font-size: 15px; font-weight: 700">Samsung fridge, 2 doors</span><span class="num" style="font-size: 18px; font-weight: 800">₦185,000</span></span>
+<span style="font-size: 13px; font-weight: 600; color: #0D3B2A">Listing</span>
+</a>
+
+<section id="questions" style="flex-grow: 1; padding: 24px 20px 120px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 12px; border-bottom: 2px solid #121410">
+<h1 style="margin: 0; font-size: 36px; line-height: 1; font-weight: 800; letter-spacing: -0.04em">Questions <span class="num" style="font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #A86A0C">0</span></h1>
+<span style="font-size: 14px; line-height: 1.45; color: #3E4139">Ask before you pay. Answers are public.</span>
+</div>
+
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; border: 1.5px solid transparent; box-shadow: none">
+<label for="qm" style="font-size: 16px; font-weight: 700">Ask Tolu a question</label>
+<textarea id="qm" rows="3" placeholder="e.g. Does the freezer still get cold?" style="box-sizing: border-box; padding: 12px 14px; background: #F7F3EA; border: 0; border-radius: 12px; line-height: 1.5; resize: none"></textarea>
+
+<span class="mono num" style="font-size: 10px; letter-spacing: .04em; color: #5B5E55">0 / 280 · 3 LEFT TODAY · PUBLIC ONCE ANSWERED</span>
+<button type="button" aria-disabled="true" style="height: 48px; border: 0; border-radius: 12px; background: #8C8E85; color: #F3EDE0; font-size: 16px; font-weight: 700">Ask Tolu</button>
+</div>
+
+
+
+
+
+
+
+
+
+<div style="border: 1.5px dashed rgba(18,20,16,.3); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 20px; font-weight: 800">No questions yet.</span><span style="font-size: 14px; line-height: 1.5; color: #3E4139">Be the first to ask. Answers show here for every buyer.</span></div>
+
+</section>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; background: #F3EDE0; border-top: 1px solid rgba(18,20,16,.15); padding: 12px 16px 22px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 10px">
+<a href="/listings/842" style="height: 54px; display: flex; align-items: center; justify-content: center; text-decoration: none; border: 1.5px solid #121410; border-radius: 12px; color: #121410; font-size: 16px; font-weight: 700">Make offer</a>
+<a href="/listings/842" class="num" style="height: 54px; display: flex; align-items: center; justify-content: center; text-decoration: none; background: #0D3B2A; color: #F3EDE0; border-radius: 12px; font-size: 16px; font-weight: 700">Buy · ₦185,000</a>
+</div>
+
+</div>
+</body>
+</html>

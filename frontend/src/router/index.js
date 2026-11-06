@@ -8,9 +8,10 @@ const router = createRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition
-    // Land below the sticky nav (its height is the --nav-h CSS variable).
+    // Land below the sticky nav (its height is the --nav-h CSS variable),
+    // unless the route sets meta.hashOffset.
     if (to.hash) {
-      const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'))
+      const navH = to.meta.hashOffset ?? parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'))
       const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
       return { el: to.hash, top: navH || 0, behavior: smooth ? 'smooth' : 'auto' }
     }

@@ -25,6 +25,11 @@ urlpatterns = [
     path('api/me/', include('apps.users.me_urls')),
     path('api/me/', include('apps.listings.urls')),
     path('api/', include('apps.listings.public_urls')),
+    path('api/', include('apps.offers.urls')),
+    path('api/', include('apps.payments.urls')),
+    path('api/deals/', include('apps.deals.urls')),
+    path('api/notifications/', include('apps.notifications.urls')),
+    path('api/waitlist/', include('apps.waitlist.urls')),
 ]
 
 # Uploaded listing photos. In production the web server serves MEDIA_ROOT.

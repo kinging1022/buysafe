@@ -56,6 +56,8 @@ class Listing(models.Model):
     # Shown to the seller on a rejected listing. Set by staff when rejecting.
     rejection_reason = models.CharField(max_length=200, blank=True)
     is_deleted = models.BooleanField(default=False)
+    # Distinct viewers per day, not counting the seller. See views.record_view().
+    view_count = models.PositiveIntegerField(default=0, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -97,3 +99,69 @@ class ListingInterest(models.Model):
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=["listing", "buyer"], name="unique_interest_per_buyer")]
+
+
+class ListingView(models.Model):
+    """One viewer of a listing on one day, so `Listing.view_count` counts each
+    person once a day. Signed-in viewers are keyed by user, others by a salted
+    hash of their IP (the IP itself is never stored)."""
+
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="views")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, related_name="+")
+    ip_hash = models.CharField(max_length=64, blank=True)
+    date = models.DateField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["listing", "user", "date"], condition=models.Q(user__isnull=False), name="one_view_per_user_per_day"
+            ),
+            models.UniqueConstraint(
+                fields=["listing", "ip_hash", "date"], condition=models.Q(user__isnull=True), name="one_view_per_ip_per_day"
+            ),
+        ]
+
+
+class ListingQuestion(models.Model):
+    """A buyer's public question on a listing, and the seller's one answer.
+    Answered questions are public; a pending one is seen only by its asker and
+    the owner; a removed one by no one (kept for moderation). See questions.py."""
+
+    class Status(models.TextChoices):
+        PENDING = "pending", "Pending"
+        ANSWERED = "answered", "Answered"
+        REMOVED = "removed", "Removed"
+
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="questions")
+    asker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="listing_questions")
+    text = models.CharField(max_length=280)
+    answer = models.CharField(max_length=500, blank=True)
+    answered_at = models.DateTimeField(null=True, blank=True)
+    answer_edited_at = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING)
+    removed_at = models.DateTimeField(null=True, blank=True)
+    removed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name="+"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["listing", "status"]),
+            models.Index(fields=["asker", "listing", "created_at"]),
+        ]
+
+    def __str__(self):
+        return self.text[:60]
+
+
+class ListingQuestionEdit(models.Model):
+    """The answer as it was before each edit."""
+
+    question = models.ForeignKey(ListingQuestion, on_delete=models.CASCADE, related_name="edits")
+    previous_answer = models.CharField(max_length=500)
+    edited_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-edited_at"]
